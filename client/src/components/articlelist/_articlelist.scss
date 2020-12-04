@@ -1,0 +1,44 @@
+@import '../../Styles/config';
+
+.article {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	border-bottom: 1px solid $lightgrey;
+	padding: 1rem;
+
+	&_picture > img {
+		border-radius: 50%;
+	}
+
+	&_title {
+		font-family: $secondary-font;
+		font-size: 1rem;
+		width: 80%;
+		padding: 0 1rem;
+	}
+
+	&_icon {
+		display: flex;
+		align-self: center;
+		height: 36px;
+		width: 36px;
+		border-radius: 50%;
+		background: white;
+		border: 2px solid $lightgrey;
+		overflow: hidden;
+
+		a {
+			margin-left: 25%;
+			color: inherit;
+			align-self: center;
+			justify-content: center;
+		}
+	}
+}
+
+.article:hover {
+	background: $lightgrey;
+}

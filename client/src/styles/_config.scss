@@ -1,11 +1,6 @@
 $primary-font: 'Rokkitt', serif;
 $secondary-font: 'Brawler', serif;
-$bg-color: #282a36;
-$lightbg-color: #97979b;
-$white-color: white;
-$lightgrey-color: #f2f2f2;
-$primary-color: #66d8ef;
-$secondary-color: #fe7ac6;
+$lightgrey: #ececec;
 
 @mixin transition-ease {
 	transition: all 0.5s ease-in-out;

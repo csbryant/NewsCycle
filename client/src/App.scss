@@ -1,0 +1,10 @@
+@import '~bootstrap/scss/bootstrap';
+@import './styles/config';
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: $primary-font;
+	background: $bg-color;
+}

@@ -7,7 +7,7 @@ function Home() {
 	return (
 		<div className='home-grid'>
 			<Sidebar />
-			{/* <Main /> */}
+			<Main />
 		</div>
 	);
 }

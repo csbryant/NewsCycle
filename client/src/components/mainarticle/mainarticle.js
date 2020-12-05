@@ -2,9 +2,9 @@ import React from 'react';
 import './_mainarticle.scss';
 import { staticData } from '../../utils/staticData';
 
-const MainArticle = () => {
-	const title = staticData[0].title;
-	const description = staticData[0].abstract;
+const MainArticle = ({ title, abstract }) => {
+	// const title = staticData[0].title;
+	// const description = staticData[0].abstract;
 
 	return (
 		<div className='main-article'>
@@ -12,7 +12,7 @@ const MainArticle = () => {
 				<h1>{title}</h1>
 			</div>
 			<div className='main-article_content'>
-				<p>{description}</p>
+				<p>{abstract}</p>
 			</div>
 		</div>
 	);

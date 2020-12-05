@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './pages/Home/Home';
+import Home from './pages/home/home';
 import PrivateRoute from './components/ProtectedHOC/ProtectedRoute';
-import Login from './pages/Login/Login';
+import Login from './pages/login/login';
 import { UserProvider } from './context/userContext';
 
 function App() {

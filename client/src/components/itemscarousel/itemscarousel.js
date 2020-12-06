@@ -10,6 +10,7 @@ const ItemsCarousel = ({ background }) => {
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover',
 		},
+
 		content: {
 			display: 'flex',
 			flexDirection: 'row',
@@ -17,7 +18,7 @@ const ItemsCarousel = ({ background }) => {
 			alignItems: 'center',
 			width: '100%',
 			height: '100%',
-			backgroundColor: 'rgba(0, 0, 0, 0.5)',
+			backgroundColor: 'rgba(0, 0, 0, 0.6)',
 		},
 	};
 

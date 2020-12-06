@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import './_home.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import NewsCarousel from '../../components/newscarousel/newscarousel';
+import { UserProvider, useUserContext } from '../../context/userContext';
+
+console.log(useUserContext);
 
 function Home() {
 	return (

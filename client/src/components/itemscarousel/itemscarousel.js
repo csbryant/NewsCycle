@@ -19,26 +19,12 @@ const ItemsCarousel = ({ background }) => {
 			height: '100%',
 			backgroundColor: 'rgba(0, 0, 0, 0.5)',
 		},
-		nextBtn: {
-			position: 'fixed',
-			right: '10%',
-			top: '15%',
-			color: 'white',
-			fontSize: '46px',
-			cursor: 'pointer',
-		},
 	};
 
 	return (
 		<div style={styles.header}>
 			<div style={styles.content}>
-				<img
-					src={background}
-					alt=''
-					style={styles.picture}
-					width='435'
-					height='290'
-				/>
+				<img src={background} alt='' width='435' height='290' />
 			</div>
 		</div>
 	);

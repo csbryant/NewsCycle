@@ -4,6 +4,20 @@
 	height: 100%;
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1.4fr 3fr;
-	overflow: hidden;
+	grid-template-columns: 1fr;
+	overflow-y: scroll;
+}
+
+@include media-lg {
+	.home-grid {
+		height: 100%;
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1.4fr 3fr;
+		overflow: hidden;
+
+		.menu-btn {
+			display: none;
+		}
+	}
 }

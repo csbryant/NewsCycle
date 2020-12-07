@@ -7,7 +7,7 @@ import ItemsCarousel from '../itemscarousel/itemscarousel';
 import ActionBtn from '../buttons/actionbtn';
 import MainArticle from '../mainarticle/mainarticle';
 
-const NewsCarousel = () => {
+const NewsCarousel = ({ open }) => {
 	const [topstories, setTopstories] = useState({
 		topstories: [],
 	});
@@ -24,9 +24,12 @@ const NewsCarousel = () => {
 	}, [topstories]);
 
 	return (
-		<Carousel pagination={false} className='rec rec-arrow'>
+		<Carousel pagination={false}>
 			{topstories.topstories.map((item, index) => (
-				<div className='newsCarousel-grid' key={index}>
+				<div
+					className={open ? 'newsCarousel-grid' : 'newsCarousel-grid open'}
+					key={index}
+				>
 					<ItemsCarousel background={item.multimedia[0].url} />
 					<ActionBtn />
 					<MainArticle title={item.title} abstract={item.abstract} />

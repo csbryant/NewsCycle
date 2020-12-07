@@ -5,4 +5,9 @@
 	width: 100%;
 	display: grid;
 	grid-template-rows: 3fr 1fr 3fr;
+	visibility: hidden;
+
+	&.open {
+		visibility: visible;
+	}
 }

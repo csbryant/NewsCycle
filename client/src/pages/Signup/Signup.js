@@ -2,14 +2,14 @@ import React, { useRef } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useUserContext } from '../../context/userContext'
 
-const Login = (props) => {
+const Signup = (props) => {
   console.log(props)
   const username = useRef()
   const password = useRef()
   const [user, dispatch] = useUserContext()
 
-  const tryLogin = () => {
-    let loginObj = {
+  const trySignup = () => {
+    let signupObj = {
       email: username.current.value,
       password: password.current.value,
     }
@@ -19,7 +19,7 @@ const Login = (props) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(loginObj),
+      body: JSON.stringify(signupObj),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -39,9 +39,9 @@ const Login = (props) => {
     <div>
       <input ref={username} type='text' placeholder='email' />
       <input ref={password} type='password' placeholder='password' />
-      <button onClick={tryLogin}>Login</button>
-      <p>If you are a new user, please <a href="/signup">Sign Up!</a></p>
+      <button onClick={trySignup}>Sign Up</button>
+      <p>If you are an existing user, please <a href="/login">Log In!</a></p>
     </div>
   )
 }
-export default Login
+export default Signup

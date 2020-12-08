@@ -15,6 +15,11 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    categories: [
+      {
+        type: String,
+      },
+    ],
     favorites: [
       {
         type: mongoose.Schema.Types.ObjectId,

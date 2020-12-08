@@ -8,17 +8,30 @@ import Axios from 'axios';
 
 const NewsCarousel = () => {
 	// Getting Top Stories from API
-	const [stories, setStories] = useState([]);
+	const [stories, setStories] = useState(null);
+	const [isLoading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const result = await API.getTopStories();
-			// console.log(result.data.results);
-			setStories(result.data.results);
-		};
-
+		async function fetchData() {
+			// You can await here
+			const response = await API.getTopStories();
+			const data = response.data.results;
+			console.log(data);
+			setStories(data);
+			setLoading(false);
+		}
 		fetchData();
-	}, [setStories]);
+	}, []);
+
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const result = await API.getTopStories();
+	// 		// console.log(result.data.results);
+	// 		setStories(result.data.results);
+	// 	};
+
+	// 	fetchData();
+	// }, [setStories]);
 
 	// Navigating Top Stories Index
 	const [index, setIndex] = useState({
@@ -28,8 +41,6 @@ const NewsCarousel = () => {
 	const handleClick = () => {
 		setIndex({ carouselIndex: index.carouselIndex + 1 });
 	};
-
-	console.log(stories);
 
 	// const filteredArr = stories.filter((story, i) => {
 	// 	return i === index.carouselIndex;
@@ -50,7 +61,9 @@ const NewsCarousel = () => {
 		},
 
 		bgImage: {
-			backgroundImage: `url(${staticData[index.carouselIndex].multimedia[0].url})`,
+			backgroundImage: `url(${
+				stories && stories[index.carouselIndex].multimedia[0].url
+			})`,
 			backgroundPosition: 'center',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover',
@@ -76,25 +89,31 @@ const NewsCarousel = () => {
 	};
 
 	return (
-		<div style={styles.article}>
-			<div style={styles.newsCarousel}>
-				<div style={styles.bgImage}>
-					<button>Back</button>
-					<button style={styles.chevron} onClick={handleClick}>
-						<BsChevronCompactRight />
-					</button>
-				</div>
+		<div>
+			{isLoading ? (
+				<div>...Loading</div>
+			) : (
+				<div style={styles.article}>
+					<div style={styles.newsCarousel}>
+						<div style={styles.bgImage}>
+							<button>Back</button>
+							<button style={styles.chevron} onClick={handleClick}>
+								<BsChevronCompactRight />
+							</button>
+						</div>
 
-				<div>
-					<ActionBtn />
-				</div>
+						<div>
+							<ActionBtn />
+						</div>
 
-				<div style={styles.content}>
-					<h3>{staticData[index.carouselIndex].title}</h3>
-					<br />
-					<p>{staticData[index.carouselIndex].abstract}</p>
+						<div style={styles.content}>
+							<h3>{stories && stories[index.carouselIndex].title}</h3>
+							<br />
+							<p>{stories && stories[index.carouselIndex].abstract}</p>
+						</div>
+					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 };

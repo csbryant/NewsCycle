@@ -2,38 +2,54 @@ import React, { useState } from 'react';
 import './_home.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import NewsCarousel from '../../components/newscarousel/newscarousel';
-import { UserProvider, useUserContext } from '../../context/userContext';
-import { HiMenuAlt4 } from 'react-icons/hi';
+import { useMediaQuery } from 'react-responsive';
+import { Desktop, Tablet, Mobile } from '../../styles/mediaqueries';
+import { BiMenuAltLeft } from 'react-icons/bi';
 import { GrFormClose } from 'react-icons/gr';
 
-console.log(useUserContext);
+// const Desktop = ({ children }) => {
+// 	const isDesktop = useMediaQuery({ minWidth: 992 });
+// 	return isDesktop ? children : null;
+// };
+
+// const Tablet = ({ children }) => {
+// 	const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+// 	return isTablet ? children : null;
+// };
+// const Mobile = ({ children }) => {
+// 	const isMobile = useMediaQuery({ maxWidth: 767 });
+// 	return isMobile ? children : null;
+// };
 
 function Home() {
-	const [click, setClick] = useState({ clicked: false });
-
+	const [click, setClick] = useState({ clicked: true });
 	const handleClick = () => {
 		setClick({ clicked: !click.clicked });
 	};
 
-	const styles = {
-		icons: {
-			height: '36px',
-			width: '36px',
-			margin: '1rem 0rem 0rem 1rem',
-		},
-	};
-
 	return (
-		<div className='home-grid'>
-			<div className='menu-btn' onClick={handleClick}>
+		<div>
+			<Desktop>
+				<div className='desktop-grid'>
+					<Sidebar />
+					<NewsCarousel />
+				</div>
+			</Desktop>
+			<Tablet>
 				{click.clicked ? (
-					<GrFormClose style={styles.icons} />
+					<div>
+						<BiMenuAltLeft onClick={handleClick} className='menu-btn' />{' '}
+						<NewsCarousel />
+					</div>
 				) : (
-					<HiMenuAlt4 style={styles.icons} />
+					<div>
+						<GrFormClose onClick={handleClick} className='menu-btn onsidebar' />
+
+						<Sidebar />
+					</div>
 				)}
-			</div>
-			<Sidebar open={click.clicked} />
-			<NewsCarousel />
+			</Tablet>
+			{/* <Mobile>Mobile</Mobile> */}
 		</div>
 	);
 }

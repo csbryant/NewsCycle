@@ -1,23 +1,21 @@
 @import '../../Styles/config';
 
-.home-grid {
-	height: 100%;
+.desktop-grid {
+	height: 100vh;
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 2fr 5fr;
 	overflow-y: scroll;
 }
 
-@include media-lg {
-	.home-grid {
-		height: 100%;
-		width: 100%;
-		display: grid;
-		grid-template-columns: 1.4fr 3fr;
-		overflow: hidden;
+.menu-btn {
+	font-size: 36px;
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+}
 
-		.menu-btn {
-			display: none;
-		}
-	}
+.onsidebar {
+	position: relative;
+	margin-bottom: 2rem;
 }

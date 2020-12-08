@@ -6,9 +6,8 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
 import Axios from 'axios';
 
-const NewsCarousel = () => {
-	// Getting Top Stories from API
-	const [stories, setStories] = useState(null);
+const useFetch = () => {
+	const [data, setData] = useState(null);
 	const [isLoading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -17,11 +16,18 @@ const NewsCarousel = () => {
 			const response = await API.getTopStories();
 			const data = response.data.results;
 			console.log(data);
-			setStories(data);
+			setData(data);
 			setLoading(false);
 		}
 		fetchData();
 	}, []);
+
+	return { data, isLoading };
+};
+
+const NewsCarousel = () => {
+	const { data, isLoading } = useFetch();
+	// Getting Top Stories from API
 
 	// useEffect(() => {
 	// 	const fetchData = async () => {
@@ -34,19 +40,9 @@ const NewsCarousel = () => {
 	// }, [setStories]);
 
 	// Navigating Top Stories Index
-	const [index, setIndex] = useState({
-		carouselIndex: 0,
-	});
+	const [count, setCount] = useState(0);
 
-	const handleClick = () => {
-		setIndex({ carouselIndex: index.carouselIndex + 1 });
-	};
-
-	// const filteredArr = stories.filter((story, i) => {
-	// 	return i === index.carouselIndex;
-	// });
-
-	// const z = filteredArr[0];
+	console.log(data);
 
 	const styles = {
 		article: {
@@ -61,9 +57,7 @@ const NewsCarousel = () => {
 		},
 
 		bgImage: {
-			backgroundImage: `url(${
-				stories && stories[index.carouselIndex].multimedia[0].url
-			})`,
+			backgroundImage: `url(${data && data[count].multimedia[0].url})`,
 			backgroundPosition: 'center',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover',
@@ -96,8 +90,15 @@ const NewsCarousel = () => {
 				<div style={styles.article}>
 					<div style={styles.newsCarousel}>
 						<div style={styles.bgImage}>
-							<button>Back</button>
-							<button style={styles.chevron} onClick={handleClick}>
+							<button
+								style={styles.chevron}
+								onClick={() => {
+									count < 0 ? setCount(data.length - 1) : setCount(count - 1);
+								}}
+							>
+								<BsChevronCompactLeft />
+							</button>
+							<button style={styles.chevron} onClick={() => setCount(count + 1)}>
 								<BsChevronCompactRight />
 							</button>
 						</div>
@@ -107,9 +108,9 @@ const NewsCarousel = () => {
 						</div>
 
 						<div style={styles.content}>
-							<h3>{stories && stories[index.carouselIndex].title}</h3>
+							<h3>{data && data[count].title}</h3>
 							<br />
-							<p>{stories && stories[index.carouselIndex].abstract}</p>
+							<p>{data && data[count].abstract}</p>
 						</div>
 					</div>
 				</div>

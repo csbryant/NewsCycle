@@ -3,10 +3,10 @@ import './_sidebar.scss';
 import ArticleList from '../../components/articlelist/articlelist';
 import { staticData } from '../../utils/staticData';
 
-const Sidebar = ({ open }) => {
+const Sidebar = () => {
 	return (
-		<header>
-			<div className={open ? 'sidenav' : 'sidenav open'}>
+		<header className='shadow'>
+			<div className='sidenav'>
 				<ul>
 					{staticData.map((article, index) => {
 						return (

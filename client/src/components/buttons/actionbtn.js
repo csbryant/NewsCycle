@@ -1,44 +1,26 @@
 import React from 'react';
-import BtnRoundSm from './btnroundsm';
-import BtnRoundLg from './btnroundlg';
-import { BiLink } from 'react-icons/bi';
-import { RiShareForwardLine } from 'react-icons/ri';
 
 const ActionBtn = () => {
 	const styles = {
-		// actions: {
-		// 	position: 'absolute',
-		// 	bottom: '40px',
-		// 	width: '100%',
-		// 	backgroundColor: 'red',
-		// },
-
-		btnContainer: {
-			display: 'flex',
-			padding: '0 20rem',
-			// marginTop: '1rem',
-			width: '100%',
-			flexDirection: 'row',
-			justifyContent: 'space-evenly',
-			alignItems: 'center',
+		controls: {
+			backgroundColor: 'red',
+			position: 'relative',
+			bottom: '30%',
+			// display: 'grid',
+			// gridTemplateColumns: '0.5fr 1fr 0.5fr',
+			columnGap: '1rem',
+			padding: '0rem 1rem',
+			// opacity: '0',
+			zIndex: '1',
 		},
 	};
 
 	return (
-		// <div style={styles.actions}>
-		<div style={styles.btnContainer}>
-			<div style={styles.pddingBtn}>
-				<a href=''>
-					<BtnRoundSm icon={<RiShareForwardLine />} />
-				</a>
-			</div>
-			<div style={styles.pddingBtn}>
-				<BtnRoundLg />
-			</div>
-			<div style={styles.pddingBtn}>
-				<a href=''>
-					<BtnRoundSm icon={<BiLink />} />
-				</a>
+		<div>
+			<div style={styles.controls}>
+				<button style={styles.smBtn}>First button</button>
+				<button>Second button</button>
+				<button style={styles.smBtn}>Second button</button>
 			</div>
 		</div>
 		// </div>

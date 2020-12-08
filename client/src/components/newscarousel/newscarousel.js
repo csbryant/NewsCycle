@@ -1,41 +1,101 @@
 import React, { useState, useEffect } from 'react';
 import './_newscarousel.scss';
-// import { staticData } from '../../utils/staticData';
+import { staticData } from '../../utils/staticData';
 import API from '../../utils/API';
-import Carousel from 'react-elastic-carousel';
-import ItemsCarousel from '../itemscarousel/itemscarousel';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
-import MainArticle from '../mainarticle/mainarticle';
+import Axios from 'axios';
 
-const NewsCarousel = ({ open }) => {
-	const [topstories, setTopstories] = useState({
-		topstories: [],
-	});
+const NewsCarousel = () => {
+	// Getting Top Stories from API
+	const [stories, setStories] = useState([]);
 
 	useEffect(() => {
-		API.getTopStories()
-			.then((res) => {
-				setTopstories({
-					topstories: res.data.results,
-				});
-				console.log(res.data.results);
-			})
-			.catch((err) => console.log(err));
-	}, [topstories]);
+		const fetchData = async () => {
+			const result = await API.getTopStories();
+			// console.log(result.data.results);
+			setStories(result.data.results);
+		};
+
+		fetchData();
+	}, [setStories]);
+
+	// Navigating Top Stories Index
+	const [index, setIndex] = useState({
+		carouselIndex: 0,
+	});
+
+	const handleClick = () => {
+		setIndex({ carouselIndex: index.carouselIndex + 1 });
+	};
+
+	console.log(stories);
+
+	// const filteredArr = stories.filter((story, i) => {
+	// 	return i === index.carouselIndex;
+	// });
+
+	// const z = filteredArr[0];
+
+	const styles = {
+		article: {
+			padding: '0rem',
+		},
+
+		newsCarousel: {
+			height: '100vh',
+			width: '100%',
+			display: 'grid',
+			gridTemplateRows: '3fr 1fr 3fr',
+		},
+
+		bgImage: {
+			backgroundImage: `url(${staticData[index.carouselIndex].multimedia[0].url})`,
+			backgroundPosition: 'center',
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: 'cover',
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+			padding: '1rem',
+		},
+
+		chevron: {
+			background: 'white',
+			borderRadius: '50%',
+			fontSize: '1.5rem',
+			fontWeight: 'bold',
+			border: 'none',
+			color: 'grey',
+		},
+
+		content: {
+			padding: '1rem',
+			textAlign: 'center',
+		},
+	};
 
 	return (
-		<Carousel pagination={false}>
-			{topstories.topstories.map((item, index) => (
-				<div
-					className={open ? 'newsCarousel-grid' : 'newsCarousel-grid open'}
-					key={index}
-				>
-					<ItemsCarousel background={item.multimedia[0].url} />
-					<ActionBtn />
-					<MainArticle title={item.title} abstract={item.abstract} />
+		<div style={styles.article}>
+			<div style={styles.newsCarousel}>
+				<div style={styles.bgImage}>
+					<button>Back</button>
+					<button style={styles.chevron} onClick={handleClick}>
+						<BsChevronCompactRight />
+					</button>
 				</div>
-			))}
-		</Carousel>
+
+				<div>
+					<ActionBtn />
+				</div>
+
+				<div style={styles.content}>
+					<h3>{staticData[index.carouselIndex].title}</h3>
+					<br />
+					<p>{staticData[index.carouselIndex].abstract}</p>
+				</div>
+			</div>
+		</div>
 	);
 };
 

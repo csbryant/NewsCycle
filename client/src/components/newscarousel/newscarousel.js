@@ -45,26 +45,17 @@ const NewsCarousel = () => {
 	console.log(data);
 
 	const styles = {
-		article: {
-			padding: '0rem',
-		},
-
-		newsCarousel: {
-			height: '100vh',
-			width: '100%',
-			display: 'grid',
-			gridTemplateRows: '3fr 1fr 3fr',
-		},
-
 		card: {
 			backgroundColor: 'white',
-			width: '45%',
+			width: '55%',
 			opacity: '0.96',
 			borderRadius: '0.6rem',
+			position: 'relative',
+			top: '50px',
 		},
 
 		content: {
-			padding: '2rem 2rem',
+			padding: '2rem 2rem 4rem 2rem',
 			textAlign: 'center',
 		},
 
@@ -73,7 +64,6 @@ const NewsCarousel = () => {
 			alignItems: 'center',
 			justifyContent: 'center',
 			position: 'relative',
-			bottom: '20px',
 			// bottom: '50px',
 		},
 	};
@@ -109,6 +99,7 @@ const NewsCarousel = () => {
 								<div style={styles.actionBtn}>
 									<ActionBtn />
 								</div>
+
 								{/* <div style={styles.newsCarousel}>
 									<div style={styles.bgImage}></div>
 									<div>

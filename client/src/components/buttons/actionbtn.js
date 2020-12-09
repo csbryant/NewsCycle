@@ -1,26 +1,42 @@
 import React from 'react';
+import { IoMdShareAlt } from 'react-icons/io';
+import { BiLink } from 'react-icons/bi';
 
 const ActionBtn = () => {
 	const styles = {
 		controls: {
 			backgroundColor: 'red',
-			position: 'relative',
-			bottom: '30%',
-			// display: 'grid',
-			// gridTemplateColumns: '0.5fr 1fr 0.5fr',
+			display: 'grid',
+			gridTemplateColumns: '0.3fr 1fr 0.3fr',
 			columnGap: '1rem',
-			padding: '0rem 1rem',
 			// opacity: '0',
-			zIndex: '1',
+		},
+
+		smBtn: {
+			borderRadius: '50%',
+			width: '3rem',
+			height: '3rem',
+			border: '1 px solid red',
+			border: 'none',
+			background: 'white',
+		},
+
+		icons: {
+			fontSize: '1.5rem',
+			padding: '0.1rem',
 		},
 	};
 
 	return (
 		<div>
 			<div style={styles.controls}>
-				<button style={styles.smBtn}>First button</button>
+				<button style={styles.smBtn}>
+					<IoMdShareAlt style={styles.icons} />
+				</button>
 				<button>Second button</button>
-				<button style={styles.smBtn}>Second button</button>
+				<button style={styles.smBtn}>
+					<BiLink style={styles.icons} />
+				</button>
 			</div>
 		</div>
 		// </div>

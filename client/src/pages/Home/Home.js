@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './_home.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import NewsCarousel from '../../components/newscarousel/newscarousel';
-import { useMediaQuery } from 'react-responsive';
 import { Desktop, Tablet, Mobile } from '../../styles/mediaqueries';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { GrFormClose } from 'react-icons/gr';
@@ -24,13 +23,12 @@ function Home() {
 			<Tablet>
 				{click.clicked ? (
 					<div>
-						<BiMenuAltLeft onClick={handleClick} className='menu-btn' />{' '}
+						<BiMenuAltLeft onClick={handleClick} className='menu-btn' />
 						<NewsCarousel />
 					</div>
 				) : (
 					<div>
 						<GrFormClose onClick={handleClick} className='menu-btn onsidebar' />
-
 						<Sidebar />
 					</div>
 				)}

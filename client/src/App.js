@@ -1,23 +1,21 @@
-
-import React, { useEffect } from "react";
-import "./App.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import PrivateRoute from "./components/ProtectedHOC/ProtectedRoute";
-import Login from "./pages/Login/Login";
+import React, { useEffect } from 'react';
+import './App.scss';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import PrivateRoute from './components/ProtectedHOC/ProtectedRoute';
+import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import { UserProvider } from "./context/userContext";
-
+import { UserProvider } from './context/userContext';
 
 function App() {
-  return (
-    <Router>
-      <UserProvider>
-        <div>
-          <Switch>
-            <PrivateRoute path="/home">
-              <Home />
-            </PrivateRoute>
+	return (
+		<Router>
+			<UserProvider>
+				<div>
+					<Switch>
+						<PrivateRoute path='/home'>
+							<Home />
+						</PrivateRoute>
 
 						<Route exact path='/' component={(props) => <Login {...props} />} />
 						<Route exact path='/login' component={(props) => <Login {...props} />} />
@@ -34,7 +32,6 @@ function App() {
 			</UserProvider>
 		</Router>
 	);
-
 }
 
 export default App;

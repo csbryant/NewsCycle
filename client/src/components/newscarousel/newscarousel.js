@@ -4,7 +4,7 @@ import { staticData } from '../../utils/staticData';
 import API from '../../utils/API';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
-import Axios from 'axios';
+import { Carousel } from 'react-bootstrap';
 
 const useFetch = () => {
 	const [data, setData] = useState(null);
@@ -56,66 +56,109 @@ const NewsCarousel = () => {
 			gridTemplateRows: '3fr 1fr 3fr',
 		},
 
-		bgImage: {
-			backgroundImage: `url(${data && data[count].multimedia[0].url})`,
-			backgroundPosition: 'center',
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: 'cover',
-			display: 'flex',
-			justifyContent: 'space-between',
-			alignItems: 'center',
-			padding: '1rem',
-		},
-
-		chevron: {
-			background: 'white',
-			borderRadius: '50%',
-			fontSize: '1.5rem',
-			fontWeight: 'bold',
-			border: 'none',
-			color: 'grey',
+		card: {
+			backgroundColor: 'white',
+			width: '45%',
+			opacity: '0.96',
+			borderRadius: '0.6rem',
 		},
 
 		content: {
-			padding: '1rem',
+			padding: '2rem 2rem',
 			textAlign: 'center',
+		},
+
+		actionBtn: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			position: 'relative',
+			bottom: '20px',
+			// bottom: '50px',
 		},
 	};
 
 	return (
-		<div>
-			{isLoading ? (
-				<div>...Loading</div>
-			) : (
-				<div style={styles.article}>
-					<div style={styles.newsCarousel}>
-						<div style={styles.bgImage}>
-							<button
-								style={styles.chevron}
-								onClick={() => {
-									count < 0 ? setCount(data.length - 1) : setCount(count - 1);
+		<Carousel interval={null} touch={true}>
+			{data &&
+				data.map((article, index) => {
+					return (
+						<Carousel.Item>
+							<div
+								key={index}
+								style={{
+									backgroundImage: `url(${article.multimedia[0].url})`,
+									backgroundPosition: 'center',
+									backgroundRepeat: 'no-repeat',
+									backgroundSize: 'cover',
+									width: '100%',
+									height: '100vh',
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+									justifyContent: 'center',
 								}}
 							>
-								<BsChevronCompactLeft />
-							</button>
-							<button style={styles.chevron} onClick={() => setCount(count + 1)}>
-								<BsChevronCompactRight />
-							</button>
-						</div>
+								<div style={styles.card}>
+									<div style={styles.content}>
+										<h1> {article.title}</h1>
+										<br />
+										<p>{article.abstract}</p>
+									</div>
+								</div>
+								<div style={styles.actionBtn}>
+									<ActionBtn />
+								</div>
+								{/* <div style={styles.newsCarousel}>
+									<div style={styles.bgImage}></div>
+									<div>
+										<ActionBtn />
+									</div>
+									<div style={styles.content}>
+										<h3>{article.title}</h3>
+										<br />
+										<p>{article.abstract}</p>
+									</div>
+								</div> */}
+							</div>
+						</Carousel.Item>
+					);
+				})}
+		</Carousel>
 
-						<div>
-							<ActionBtn />
-						</div>
+		// <div>
+		// 	{isLoading ? (
+		// 		<div>...Loading</div>
+		// 	) : (
+		// 		<div style={styles.article}>
+		// 			<div style={styles.newsCarousel}>
+		// 				<div style={styles.bgImage}>
+		// 					<button
+		// 						style={styles.chevron}
+		// 						onClick={() => {
+		// 							count < 0 ? setCount(data.length - 1) : setCount(count - 1);
+		// 						}}
+		// 					>
+		// 						<BsChevronCompactLeft />
+		// 					</button>
+		// 					<button style={styles.chevron} onClick={() => setCount(count + 1)}>
+		// 						<BsChevronCompactRight />
+		// 					</button>
+		// 				</div>
 
-						<div style={styles.content}>
-							<h3>{data && data[count].title}</h3>
-							<br />
-							<p>{data && data[count].abstract}</p>
-						</div>
-					</div>
-				</div>
-			)}
-		</div>
+		// 				<div>
+		// 					<ActionBtn />
+		// 				</div>
+
+		// 				<div style={styles.content}>
+		// 					<h3>{data && data[count].title}</h3>
+		// 					<br />
+		// 					<p>{data && data[count].abstract}</p>
+		// 				</div>
+		// 			</div>
+		// 		</div>
+		// 	)}
+		// </div>
 	);
 };
 

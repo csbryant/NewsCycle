@@ -27,9 +27,12 @@ router.post("/articles", ({ body, session }, res) => {
     });
 });
 
-// Gets all articles
-router.get("/articles", (req, res) => {
-  db.Article.find({})
+// Gets all articles from the user who is logged in
+router.get("/articles", ({ session }, res) => {
+  let id = session.passport.user;
+  console.log(id);
+  db.User.findById(id)
+    .then(() => db.Article.findMany({}))
     .then((articles) => {
       console.log(articles);
       res.json(articles);

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './_newscarousel.scss';
 import { staticData } from '../../utils/staticData';
@@ -6,26 +7,28 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
 import { Carousel } from 'react-bootstrap';
 
+
 const useFetch = () => {
-	const [data, setData] = useState(null);
-	const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
-	useEffect(() => {
-		async function fetchData() {
-			// You can await here
-			const response = await API.getTopStories();
-			const data = response.data.results;
-			console.log(data);
-			setData(data);
-			setLoading(false);
-		}
-		fetchData();
-	}, []);
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const response = await API.getTopStories();
+      const data = response.data.results;
+      console.log(data);
+      setData(data);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
 
-	return { data, isLoading };
+  return { data, isLoading };
 };
 
 const NewsCarousel = () => {
+
 	const { data, isLoading } = useFetch();
 
 	console.log(data);
@@ -90,6 +93,7 @@ const NewsCarousel = () => {
 				})}
 		</Carousel>
 	);
+
 };
 
 export default NewsCarousel;

@@ -9,22 +9,22 @@ import { Carousel } from 'react-bootstrap';
 
 
 const useFetch = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+	const [data, setData] = useState(null);
+	const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      const response = await API.getTopStories();
-      const data = response.data.results;
-      console.log(data);
-      setData(data);
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
+	useEffect(() => {
+		async function fetchData() {
+			// You can await here
+			const response = await API.getTopStories();
+			const data = response.data.results;
+			console.log(data);
+			setData(data);
+			setLoading(false);
+		}
+		fetchData();
+	}, []);
 
-  return { data, isLoading };
+	return { data, isLoading };
 };
 
 const NewsCarousel = () => {
@@ -85,7 +85,9 @@ const NewsCarousel = () => {
 									</div>
 								</div>
 								<div style={styles.actionBtn}>
-									<ActionBtn />
+									<ActionBtn
+										url={article.url}
+									/>
 								</div>
 							</div>
 						</Carousel.Item>

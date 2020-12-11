@@ -6,6 +6,7 @@ import PrivateRoute from './components/ProtectedHOC/ProtectedRoute';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import { UserProvider } from './context/userContext';
+import Front from './pages/Front/Front'
 
 function App() {
 	return (
@@ -16,8 +17,8 @@ function App() {
 						<PrivateRoute path='/home'>
 							<Home />
 						</PrivateRoute>
-
-						<Route exact path='/' component={(props) => <Login {...props} />} />
+						<Route exact path='/Front' component={(props) => <Front {...props} />} />
+						<Route exact path='/' component={(props) => <Front {...props} />} />
 						<Route exact path='/login' component={(props) => <Login {...props} />} />
 						<Route
 							exact

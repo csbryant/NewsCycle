@@ -11,7 +11,7 @@ export default {
     return axios.get(BASEURL + APIKEY);
   },
   // Saves an article to the reading list
-  // saveArticle: function () {
-  //   return axios.post("/api/articles");
-  // },
+  saveArticle: function () {
+    return axios.post("/api/articles");
+  },
 };

@@ -1,8 +1,8 @@
 //Imported Packages
 const express = require("express");
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo")(session);
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 
@@ -11,6 +11,7 @@ const path = require("path");
 
 //Routes and or Files
 const passport = require("./passport/setup.js");
+
 const auth = require("./routes/auth.js");
 const testRouter = require("./routes/testRouters.js");
 const router = require("./routes/api.js");

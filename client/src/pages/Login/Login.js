@@ -1,6 +1,10 @@
 import React, { useRef } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useUserContext } from '../../context/userContext'
+import Navigation from '../../components/navigation/navigation'
+import { Container } from 'react-bootstrap';
+import logo from '../../img/logo.png';
+import './_login.scss';
 
 const Login = (props) => {
   console.log(props)
@@ -37,10 +41,22 @@ const Login = (props) => {
 
   return (
     <div>
-      <input ref={username} type='text' placeholder='email' />
-      <input ref={password} type='password' placeholder='password' />
-      <button onClick={tryLogin}>Login</button>
-      <p>If you are a new user, please <a href="/signup">Sign Up!</a></p>
+      <Navigation />
+      <Container>
+        <img src={logo} className="logo"></img>
+        <p className="description">The <span class="importantcolor">fastest</span> and <span class="importantcolor">easiest</span> way to read the news.</p>
+        <br></br>
+        <h1 className="signup" ><a href="/SignUp">Sign Up</a> | <span className="thispage">Log In</span> </h1>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input ref={username} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+          <label ref={password} for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+        </div>
+        <button type="submit" class="btn btn-primary" onClick={tryLogin}>Submit</button>
+
+      </Container>
     </div>
   )
 }

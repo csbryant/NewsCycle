@@ -1,0 +1,47 @@
+@import "../../styles/config";
+
+
+.logo {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.description {
+    text-align: center;
+    font-weight: 200;
+    font-size: 22px;
+    color: #353535;
+}
+
+.signup a {
+    color: #353535;
+    font-weight: 300;
+}
+
+.signup a:hover {
+    color: #428158;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.signup {
+    text-align: center;
+    font-weight: 200;
+    font-size: 22px;
+}
+
+.importantcolor {
+    font-weight: 400;
+    color: #428158;
+}
+
+
+@media only screen and (max-width : 812px) {  
+    .logo {
+        margin-top: 60px;
+    }
+}

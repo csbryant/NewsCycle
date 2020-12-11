@@ -1,5 +1,6 @@
 const db = require("../models");
 const express = require("express");
+console.log(db);
 
 const router = express.Router();
 
@@ -32,7 +33,7 @@ router.get("/articles", ({ session }, res) => {
   let id = session.passport.user;
   console.log(id);
   db.User.findById(id)
-    .then(() => db.Article.findMany({}))
+    .populate("favorites")
     .then((articles) => {
       console.log(articles);
       res.json(articles);

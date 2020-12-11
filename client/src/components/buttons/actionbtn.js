@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 import { IoMdShareAlt } from 'react-icons/io';
 import { BiLink } from 'react-icons/bi';
 import { BsBookmarkFill } from 'react-icons/bs';
-import { Lightgrey, PrimaryColor, Red, Opacity } from '../../styles/config';
+import { Lightgrey, PrimaryColor, Opacity } from '../../styles/config';
 
-const ActionBtn = () => {
+
+const ActionBtn = ({ url }) => {
 	// const changeBackground = (e) => {
 	// 	let bg = e.target.style.backgroundColor;
 	// 	bg = { PrimaryColor };
 	// };
+
+	function hoverHandler(e) {
+		e.target.style.background = `${PrimaryColor}`;
+	}
+
+	function nonHoverHandler(e) {
+		e.target.style.background = `${Lightgrey}`;
+	}
 
 	const styles = {
 		controls: {
@@ -27,7 +36,6 @@ const ActionBtn = () => {
 			height: '3rem',
 			border: `2px solid ${Lightgrey}`,
 			opacity: `${Opacity}`,
-			backgroundColor: `${Lightgrey}`,
 		},
 
 		lgBtn: {
@@ -36,7 +44,6 @@ const ActionBtn = () => {
 			width: '6rem',
 			height: '6rem',
 			border: `2px solid ${Lightgrey}`,
-			background: 'white',
 		},
 
 		icons: {
@@ -48,15 +55,31 @@ const ActionBtn = () => {
 	return (
 		<div>
 			<div style={styles.controls}>
-				<button style={styles.smBtn}>
+				<button
+					style={styles.smBtn}
+					onMouseEnter={hoverHandler}
+					onMouseLeave={nonHoverHandler}
+				>
 					<IoMdShareAlt style={styles.icons} />
 				</button>
-				<button style={styles.lgBtn}>
+				<button
+					style={styles.lgBtn}
+					onMouseEnter={hoverHandler}
+					onMouseLeave={nonHoverHandler}
+					// disabled={state.loading}
+					// type = "submit"
+				>
 					<BsBookmarkFill />
 				</button>
-				<button style={styles.smBtn}>
-					<BiLink style={styles.icons} />
-				</button>
+				<a href={url}>
+					<button
+						style={styles.smBtn}
+						onMouseEnter={hoverHandler}
+						onMouseLeave={nonHoverHandler}
+					>
+						<BiLink style={styles.icons} />
+					</button>
+				</a>
 			</div>
 		</div>
 		// </div>

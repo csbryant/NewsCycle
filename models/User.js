@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
+const Schema = mongoose.Schema;
+
 // Create Schema
-const UserSchema = new mongoose.Schema(
+const UserSchema = new Schema(
   {
     email: {
       type: String,
@@ -22,8 +24,8 @@ const UserSchema = new mongoose.Schema(
     ],
     favorites: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Article",
+        type: Schema.Types.ObjectId,
+        ref: "articles",
       },
     ],
   },

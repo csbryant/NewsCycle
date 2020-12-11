@@ -1,5 +1,6 @@
 const db = require("../models");
 const express = require("express");
+console.log(db);
 
 const router = express.Router();
 
@@ -27,9 +28,12 @@ router.post("/articles", ({ body, session }, res) => {
     });
 });
 
-// Gets all articles
-router.get("/articles", (req, res) => {
-  db.Article.find({})
+// Gets all articles from the user who is logged in
+router.get("/articles", ({ session }, res) => {
+  let id = session.passport.user;
+  console.log(id);
+  db.User.findById(id)
+    .populate("favorites")
     .then((articles) => {
       console.log(articles);
       res.json(articles);

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './_newscarousel.scss';
 import { staticData } from '../../utils/staticData';
@@ -5,44 +6,33 @@ import API from '../../utils/API';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
 import { Carousel } from 'react-bootstrap';
+import { UPDATE_ARTICLES, LOADING } from '../../utils/actions';
+import { useStoreContext } from "../../utils/GlobalState";
 
-const useFetch = () => {
-	const [data, setData] = useState(null);
-	const [isLoading, setLoading] = useState(true);
 
-	useEffect(() => {
-		async function fetchData() {
-			// You can await here
-			const response = await API.getTopStories();
-			const data = response.data.results;
-			console.log(data);
-			setData(data);
-			setLoading(false);
-		}
-		fetchData();
-	}, []);
-
-	return { data, isLoading };
-};
 
 const NewsCarousel = () => {
-	const { data, isLoading } = useFetch();
-	// Getting Top Stories from API
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const result = await API.getTopStories();
-	// 		// console.log(result.data.results);
-	// 		setStories(result.data.results);
-	// 	};
+	const [state, dispatch] = useStoreContext();
+	const [toggle, setToggle] = useState(true)
+  
 
-	// 	fetchData();
-	// }, [setStories]);
+	const getTopStories = () => {
+		dispatch({ type: LOADING });
+		API.getTopStories()
+		  .then(results => {
+			dispatch({
+			  type: UPDATE_ARTICLES,
+			  payload: results.data.results
+			});
+		  })
+		  .catch(err => console.log(err));
+	  };
 
-	// Navigating Top Stories Index
-	const [count, setCount] = useState(0);
+	  useEffect(() => {
+		getTopStories();
+  }, []);
 
-	console.log(data);
 
 	const styles = {
 		card: {
@@ -70,12 +60,11 @@ const NewsCarousel = () => {
 
 	return (
 		<Carousel interval={null} touch={true}>
-			{data &&
-				data.map((article, index) => {
+			{state.articles &&
+				state.articles.map((article, index) => {
 					return (
-						<Carousel.Item>
+						<Carousel.Item key={index}>
 							<div
-								key={index}
 								style={{
 									backgroundImage: `url(${article.multimedia[0].url})`,
 									backgroundPosition: 'center',
@@ -97,96 +86,17 @@ const NewsCarousel = () => {
 									</div>
 								</div>
 								<div style={styles.actionBtn}>
-									<ActionBtn />
+									<ActionBtn
+										url={article.url}
+									/>
 								</div>
-
-								{/* <div style={styles.newsCarousel}>
-									<div style={styles.bgImage}></div>
-									<div>
-										<ActionBtn />
-									</div>
-									<div style={styles.content}>
-										<h3>{article.title}</h3>
-										<br />
-										<p>{article.abstract}</p>
-									</div>
-								</div> */}
 							</div>
 						</Carousel.Item>
 					);
 				})}
 		</Carousel>
-
-		// <div>
-		// 	{isLoading ? (
-		// 		<div>...Loading</div>
-		// 	) : (
-		// 		<div style={styles.article}>
-		// 			<div style={styles.newsCarousel}>
-		// 				<div style={styles.bgImage}>
-		// 					<button
-		// 						style={styles.chevron}
-		// 						onClick={() => {
-		// 							count < 0 ? setCount(data.length - 1) : setCount(count - 1);
-		// 						}}
-		// 					>
-		// 						<BsChevronCompactLeft />
-		// 					</button>
-		// 					<button style={styles.chevron} onClick={() => setCount(count + 1)}>
-		// 						<BsChevronCompactRight />
-		// 					</button>
-		// 				</div>
-
-		// 				<div>
-		// 					<ActionBtn />
-		// 				</div>
-
-		// 				<div style={styles.content}>
-		// 					<h3>{data && data[count].title}</h3>
-		// 					<br />
-		// 					<p>{data && data[count].abstract}</p>
-		// 				</div>
-		// 			</div>
-		// 		</div>
-		// 	)}
-		// </div>
 	);
+
 };
 
 export default NewsCarousel;
-
-// class NewsCarousel extends React.Component {
-
-// 	// const [topStories, settopStories] = useState ({
-// 	// 	topStories:[],
-// 	// })
-
-// 	state = {
-// 		topStories: [],
-// 	}
-
-// 	//component did mount, fire off api call
-// 	componentDidMount() {
-// 		API.getTopStories()
-// 			.then(res => {
-// 				this.setState({
-// 					topStories: res.data.results,
-// 				});
-// 				console.log(res.data.results)
-// 			});
-// 	}
-
-// 	render() {
-// 		return (
-// 			<Carousel pagination={false} className='rec rec-arrow'>
-// 				{this.state.topStories.map((item, index) => (
-// 					<div className='newsCarousel-grid' key={index}>
-// 						<ItemsCarousel background={item.multimedia[0].url} />
-// 						<ActionBtn />
-// 						<MainArticle title={item.title} abstract={item.abstract} />
-// 					</div>
-// 				))}
-// 			</Carousel>
-// 		);
-// 	}
-// }

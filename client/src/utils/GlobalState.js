@@ -4,6 +4,7 @@ import {
   REMOVE_FAVORITE,
   UPDATE_FAVORITES,
   LOADING,
+  UPDATE_ARTICLES,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -18,6 +19,13 @@ const reducer = (state, action) => {
         loading: false,
       };
 
+    case UPDATE_ARTICLES:
+     return {
+      ...state,
+      articles: [...action.payload],
+      loading: false
+    };
+  
     case UPDATE_FAVORITES:
       return {
         ...state,

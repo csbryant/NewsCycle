@@ -66,6 +66,8 @@ const ActionBtn = ({ url }) => {
 					style={styles.lgBtn}
 					onMouseEnter={hoverHandler}
 					onMouseLeave={nonHoverHandler}
+					// disabled={state.loading}
+					// type = "submit"
 				>
 					<BsBookmarkFill />
 				</button>

@@ -6,32 +6,33 @@ import API from '../../utils/API';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
 import { Carousel } from 'react-bootstrap';
+import { UPDATE_ARTICLES, LOADING } from '../../utils/actions';
+import { useStoreContext } from "../../utils/GlobalState";
 
 
-const useFetch = () => {
-	const [data, setData] = useState(null);
-	const [isLoading, setLoading] = useState(true);
-
-	useEffect(() => {
-		async function fetchData() {
-			// You can await here
-			const response = await API.getTopStories();
-			const data = response.data.results;
-			console.log(data);
-			setData(data);
-			setLoading(false);
-		}
-		fetchData();
-	}, []);
-
-	return { data, isLoading };
-};
 
 const NewsCarousel = () => {
 
-	const { data, isLoading } = useFetch();
+	const [state, dispatch] = useStoreContext();
+	const [toggle, setToggle] = useState(true)
+  
 
-	console.log(data);
+	const getTopStories = () => {
+		dispatch({ type: LOADING });
+		API.getTopStories()
+		  .then(results => {
+			dispatch({
+			  type: UPDATE_ARTICLES,
+			  payload: results.data.results
+			});
+		  })
+		  .catch(err => console.log(err));
+	  };
+
+	  useEffect(() => {
+		getTopStories();
+  }, []);
+
 
 	const styles = {
 		card: {
@@ -59,8 +60,8 @@ const NewsCarousel = () => {
 
 	return (
 		<Carousel interval={null} touch={true}>
-			{data &&
-				data.map((article, index) => {
+			{state.articles &&
+				state.articles.map((article, index) => {
 					return (
 						<Carousel.Item key={index}>
 							<div

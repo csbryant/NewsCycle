@@ -12,6 +12,13 @@ function Home() {
 		setClick({ clicked: !click.clicked });
 	};
 
+	const styles = {
+		gridMobile: {
+			display: 'grid',
+			gridTemplateRows: '5% 95%',
+		},
+	};
+
 	return (
 		<div>
 			<Desktop>
@@ -22,13 +29,17 @@ function Home() {
 			</Desktop>
 			<Tablet>
 				{click.clicked ? (
-					<div>
-						<BiMenuAltLeft onClick={handleClick} className='menu-btn' />
+					<div style={styles.gridMobile}>
+						<div>
+							<BiMenuAltLeft onClick={handleClick} className='menu-btn' />
+						</div>
 						<NewsCarousel />
 					</div>
 				) : (
-					<div>
-						<GrFormClose onClick={handleClick} className='menu-btn onsidebar' />
+					<div style={styles.gridMobile}>
+						<div>
+							<GrFormClose onClick={handleClick} className='menu-btn onsidebar' />
+						</div>
 						<Sidebar />
 					</div>
 				)}

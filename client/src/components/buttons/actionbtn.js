@@ -20,13 +20,9 @@ const ActionBtn = ({ url }) => {
 
 	const styles = {
 		controls: {
-			// backgroundColor: 'white',
-			display: 'grid',
-			gridTemplateColumns: '0.3fr 1fr 0.3fr',
-			columnGap: '1rem',
+			display: 'flex',
 			justifyItems: 'center',
 			alignItems: 'center',
-			// opacity: '0',
 		},
 
 		smBtn: {
@@ -43,6 +39,7 @@ const ActionBtn = ({ url }) => {
 			width: '6rem',
 			height: '6rem',
 			border: `2px solid ${Lightgrey}`,
+			margin: '0 1rem',
 		},
 
 		icons: {
@@ -52,33 +49,43 @@ const ActionBtn = ({ url }) => {
 	};
 
 	return (
-		<div>
+		<>
 			<div style={styles.controls}>
-				<button
-					style={styles.smBtn}
-					onMouseEnter={hoverHandler}
-					onMouseLeave={nonHoverHandler}
-				>
-					<IoMdShareAlt style={styles.icons} />
-				</button>
-				<button
-					style={styles.lgBtn}
-					onMouseEnter={hoverHandler}
-					onMouseLeave={nonHoverHandler}
-					// disabled={state.loading}
-					// type = "submit"
-				>
-					<BsBookmarkFill />
-				</button>
-				<div style={styles.smBtn}>
+				<div>
+					<button
+						style={styles.smBtn}
+						onMouseEnter={hoverHandler}
+						onMouseLeave={nonHoverHandler}
+					>
+						<IoMdShareAlt style={styles.icons} />
+					</button>
+				</div>
+
+				<div>
+					<button
+						style={styles.lgBtn}
+						onMouseEnter={hoverHandler}
+						onMouseLeave={nonHoverHandler}
+						// disabled={state.loading}
+						// type = "submit"
+					>
+						<BsBookmarkFill />
+					</button>
+				</div>
+
+				<div>
 					<a href={url}>
-						<button onMouseEnter={hoverHandler} onMouseLeave={nonHoverHandler}>
+						<button
+							style={styles.smBtn}
+							onMouseEnter={hoverHandler}
+							onMouseLeave={nonHoverHandler}
+						>
 							<BiLink style={styles.icons} />
 						</button>
 					</a>
 				</div>
 			</div>
-		</div>
+		</>
 		// </div>
 	);
 };

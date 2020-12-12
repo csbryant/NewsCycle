@@ -1,5 +1,14 @@
 @import "../../styles/config";
 
-.carousel .item {
-    height: 200px !important;
+.specific {
+  width:900px;
+  height:500px;
+  margin: auto;
+}
+
+@media (max-width: 1000px) {
+  .specific {
+    width:auto;
+    height:auto;
   }
+}

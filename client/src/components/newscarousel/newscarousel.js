@@ -1,43 +1,50 @@
-
 import React, { useState, useEffect } from 'react';
 import './_newscarousel.scss';
 import { staticData } from '../../utils/staticData';
 import API from '../../utils/API';
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ActionBtn from '../buttons/actionbtn';
 import { Carousel } from 'react-bootstrap';
 import { UPDATE_ARTICLES, LOADING } from '../../utils/actions';
-import { useStoreContext } from "../../utils/GlobalState";
-
-
+import { useStoreContext } from '../../utils/GlobalState';
+import { useMediaQuery } from 'react-responsive';
 
 const NewsCarousel = () => {
-
 	const [state, dispatch] = useStoreContext();
-	const [toggle, setToggle] = useState(true)
-  
+	const [toggle, setToggle] = useState(true);
 
 	const getTopStories = () => {
 		dispatch({ type: LOADING });
 		API.getTopStories()
-		  .then(results => {
-			dispatch({
-			  type: UPDATE_ARTICLES,
-			  payload: results.data.results
-			});
-		  })
-		  .catch(err => console.log(err));
-	  };
+			.then((results) => {
+				dispatch({
+					type: UPDATE_ARTICLES,
+					payload: results.data.results,
+				});
+			})
+			.catch((err) => console.log(err));
+	};
 
-	  useEffect(() => {
+	useEffect(() => {
 		getTopStories();
-  }, []);
+	}, []);
 
+	const isDesktopOrLaptop = window.matchMedia('(min-width: 1200px)');
+
+	console.log(isDesktopOrLaptop.matches);
 
 	const styles = {
-		card: {
+		cardDesktop: {
 			backgroundColor: 'white',
 			width: '55%',
+			opacity: '0.96',
+			borderRadius: '0.6rem',
+			position: 'relative',
+			top: '50px',
+		},
+
+		cardMobile: {
+			backgroundColor: 'white',
+			width: '90%',
 			opacity: '0.96',
 			borderRadius: '0.6rem',
 			position: 'relative',
@@ -78,7 +85,11 @@ const NewsCarousel = () => {
 									justifyContent: 'center',
 								}}
 							>
-								<div style={styles.card}>
+								<div
+									style={
+										isDesktopOrLaptop.matches ? styles.cardDesktop : styles.cardMobile
+									}
+								>
 									<div style={styles.content}>
 										<h1> {article.title}</h1>
 										<br />
@@ -86,9 +97,7 @@ const NewsCarousel = () => {
 									</div>
 								</div>
 								<div style={styles.actionBtn}>
-									<ActionBtn
-										url={article.url}
-									/>
+									<ActionBtn url={article.url} />
 								</div>
 							</div>
 						</Carousel.Item>
@@ -96,7 +105,6 @@ const NewsCarousel = () => {
 				})}
 		</Carousel>
 	);
-
 };
 
 export default NewsCarousel;

@@ -20,7 +20,7 @@ const Sidebar = () => {
   const removeFromFavorites = (id) => {
     dispatch({
       type: REMOVE_FAVORITE,
-      _id: id,
+      payload: { _id: id },
     });
   };
 

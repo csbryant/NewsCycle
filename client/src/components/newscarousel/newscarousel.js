@@ -20,6 +20,12 @@ const NewsCarousel = () => {
 					type: UPDATE_ARTICLES,
 					payload: results.data.results,
 				});
+        dispatch({
+          type: SET_CURRENT_ARTICLE,
+          payload: {
+            article: results.data.results[0],
+          },
+        });
 			})
 			.catch((err) => console.log(err));
 	};

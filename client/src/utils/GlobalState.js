@@ -5,6 +5,7 @@ import {
   UPDATE_FAVORITES,
   LOADING,
   UPDATE_ARTICLES,
+  SET_CURRENT_ARTICLE,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -12,6 +13,13 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SET_CURRENT_ARTICLE:
+      return {
+        ...state,
+        currentArticle: action.payload.article,
+        index: action.payload.index,
+        loading: false,
+      };
     case SAVE_ARTICLE:
       return {
         ...state,
@@ -20,12 +28,12 @@ const reducer = (state, action) => {
       };
 
     case UPDATE_ARTICLES:
-     return {
-      ...state,
-      articles: [...action.payload],
-      loading: false
-    };
-  
+      return {
+        ...state,
+        articles: [...action.payload],
+        loading: false,
+      };
+
     case UPDATE_FAVORITES:
       return {
         ...state,
@@ -37,7 +45,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         favorites: state.favorites.filter((article) => {
-          return article._id !== action._id;
+          return article._id !== action.payload._id;
         }),
       };
 
@@ -56,7 +64,7 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     articles: [],
     currentArticle: {
-      _id: 0,
+      index: 0,
       title: "",
       abstract: "",
       url: "",

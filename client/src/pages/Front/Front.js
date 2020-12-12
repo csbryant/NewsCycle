@@ -1,13 +1,12 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
-import Navigation from '../../components/navigation/navigation'
-import Demo from '../../components/demonstration/demonstration'
-import { Container } from 'react-bootstrap';
-import logo from '../../img/logo.png';
-import './_front.scss';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import Navigation from "../../components/navigation/navigation";
+import Demo from "../../components/demonstration/demonstration";
+import { Container } from "react-bootstrap";
+import logo from "../../img/logo.png";
+import "./_front.scss";
 
 const Front = () => {
-
     return (
         <div>
             <Navigation />

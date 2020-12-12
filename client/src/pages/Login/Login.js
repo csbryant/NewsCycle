@@ -44,17 +44,17 @@ const Login = (props) => {
       <Navigation />
       <Container>
         <img src={logo} className="logo"></img>
-        <p className="description">The <span class="importantcolor">fastest</span> and <span class="importantcolor">easiest</span> way to read the news.</p>
+        <p className="description">The <span className="importantcolor">fastest</span> and <span className="importantcolor">easiest</span> way to read the news.</p>
         <br></br>
         <h1 className="signup" ><a href="/SignUp">Sign Up</a> | <span className="thispage">Log In</span> </h1>
 
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input ref={username} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+          <input ref={username} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
           <label ref={password} for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
         </div>
-        <button type="submit" class="btn btn-primary" onClick={tryLogin}>Submit</button>
+        <button type="submit" className="btn btn-primary" onClick={tryLogin}>Submit</button>
 
       </Container>
     </div>

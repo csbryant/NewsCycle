@@ -13,22 +13,24 @@ const ActionBtn = ({ url }) => {
   // 	let bg = e.target.style.backgroundColor;
   // 	bg = { PrimaryColor };
   // };
-  const handleSaveArticle = (e) => {
-    dispatch({ type: LOADING });
-    API.saveArticle()
-      .then((result) => {
-        console.log(result);
-        dispatch({
-          type: SAVE_ARTICLE,
-          payload: result.data.results,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
+  function handleSaveArticle() {
+    console.log(state);
+    // console.log("clicked");
+    // dispatch({ type: LOADING });
+    // API.saveArticle()
+    //   .then((result) => {
+    //     console.log(result.data.results);
+    //     dispatch({
+    //       type: SAVE_ARTICLE,
+    //       payload: result.data.results,
+    //     });
+    //   })
+    //   .catch((err) => console.log(err));
+  }
 
-  useEffect(() => {
-    handleSaveArticle();
-  }, [state]);
+  //   useEffect(() => {
+  //     handleSaveArticle();
+  //   }, [state]);
 
   function hoverHandler(e) {
     e.target.style.background = `${PrimaryColor}`;
@@ -85,7 +87,7 @@ const ActionBtn = ({ url }) => {
           style={styles.lgBtn}
           onMouseEnter={hoverHandler}
           onMouseLeave={nonHoverHandler}
-          onClick={() => dispatch}
+          onClick={handleSaveArticle}
           // disabled={state.loading}
           // type = "submit"
         >

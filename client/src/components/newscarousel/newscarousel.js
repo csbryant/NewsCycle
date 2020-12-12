@@ -5,13 +5,16 @@ import API from "../../utils/API";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import ActionBtn from "../buttons/actionbtn";
 import { Carousel } from "react-bootstrap";
-import { UPDATE_ARTICLES, LOADING } from "../../utils/actions";
+import {
+  UPDATE_ARTICLES,
+  LOADING,
+  SET_CURRENT_ARTICLE,
+} from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 
 const NewsCarousel = () => {
   const [state, dispatch] = useStoreContext();
   const [toggle, setToggle] = useState(true);
-
   const getTopStories = () => {
     dispatch({ type: LOADING });
     API.getTopStories()
@@ -19,6 +22,12 @@ const NewsCarousel = () => {
         dispatch({
           type: UPDATE_ARTICLES,
           payload: results.data.results,
+        });
+        dispatch({
+          type: SET_CURRENT_ARTICLE,
+          payload: {
+            article: results.data.results[0],
+          },
         });
       })
       .catch((err) => console.log(err));

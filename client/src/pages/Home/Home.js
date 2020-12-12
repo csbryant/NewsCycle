@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './_home.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import NewsCarousel from '../../components/newscarousel/newscarousel';
-import { Desktop, Tablet, Mobile } from '../../styles/mediaqueries';
+import { Desktop, Tablet } from '../../styles/mediaqueries';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { GrFormClose } from 'react-icons/gr';
 

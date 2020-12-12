@@ -4,7 +4,6 @@ import { BiLink } from 'react-icons/bi';
 import { BsBookmarkFill } from 'react-icons/bs';
 import { Lightgrey, PrimaryColor, Opacity } from '../../styles/config';
 
-
 const ActionBtn = ({ url }) => {
 	// const changeBackground = (e) => {
 	// 	let bg = e.target.style.backgroundColor;
@@ -71,15 +70,13 @@ const ActionBtn = ({ url }) => {
 				>
 					<BsBookmarkFill />
 				</button>
-				<a href={url}>
-					<button
-						style={styles.smBtn}
-						onMouseEnter={hoverHandler}
-						onMouseLeave={nonHoverHandler}
-					>
-						<BiLink style={styles.icons} />
-					</button>
-				</a>
+				<div style={styles.smBtn}>
+					<a href={url}>
+						<button onMouseEnter={hoverHandler} onMouseLeave={nonHoverHandler}>
+							<BiLink style={styles.icons} />
+						</button>
+					</a>
+				</div>
 			</div>
 		</div>
 		// </div>

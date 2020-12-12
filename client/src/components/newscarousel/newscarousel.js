@@ -3,7 +3,7 @@ import './_newscarousel.scss';
 import { staticData } from '../../utils/staticData';
 import API from '../../utils/API';
 import ActionBtn from '../buttons/actionbtn';
-import { Carousel } from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel'
 import { UPDATE_ARTICLES, LOADING } from '../../utils/actions';
 import { useStoreContext } from '../../utils/GlobalState';
 import { useMediaQuery } from 'react-responsive';
@@ -31,6 +31,17 @@ const NewsCarousel = () => {
 	const isDesktopOrLaptop = window.matchMedia('(min-width: 1200px)');
 
 	console.log(isDesktopOrLaptop.matches);
+
+	
+	const [index, setIndex] = useState(0);
+
+	console.log(index)
+	  
+	const handleSelect = (selectedIndex, e) => {
+	setIndex(selectedIndex);
+
+	console.log(selectedIndex)
+};
 
 	const styles = {
 		cardDesktop: {
@@ -66,7 +77,7 @@ const NewsCarousel = () => {
 	};
 
 	return (
-		<Carousel interval={null} touch={true}>
+		<Carousel activeIndex={index} onSelect={handleSelect} touch={true}>
 			{state.articles &&
 				state.articles.map((article, index) => {
 					return (

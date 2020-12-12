@@ -13,33 +13,29 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { pDesktop, pMobile, h1Desktop, h1Mobile } from '../../styles/config.js';
 
 const NewsCarousel = () => {
+
+
 	const [index, setIndex] = useState(0);
-	console.log(index);
+	// console.log(index)
 	const [state, dispatch] = useStoreContext();
+	const [ art, setArt] = useState([])
+
 
 	const handleSelect = (selectedIndex, e) => {
 		setIndex(selectedIndex);
 
 		// console.log(selectedIndex)
+
 	};
 
 	// const [toggle, setToggle] = useState(true);
+  
+const getTopStories = () => {
 
-	const getTopStories = () => {
 		dispatch({ type: LOADING });
 		API.getTopStories()
 			.then((results) => {
-				dispatch({
-					type: UPDATE_ARTICLES,
-					payload: results.data.results,
-				});
-				dispatch({
-					type: SET_CURRENT_ARTICLE,
-					payload: {
-						article: results.data.results[index],
-						index: handleSelect,
-					},
-				});
+				setArt(results.data.results)
 			})
 			.catch((err) => console.log(err));
 	};
@@ -83,17 +79,15 @@ const NewsCarousel = () => {
 			position: 'relative',
 		},
 	};
-
+	console.log(index)
+	const handleSaveArticle = ()=>{
+		console.log(art[index])
+	}
 	return (
-		<Carousel
-			interval={null}
-			activeIndex={index}
-			onSelect={handleSelect}
-			touch={true}
-			controls={isDesktopOrLaptop.matches ? true : false}
-		>
-			{state.articles &&
-				state.articles.map((article, index) => {
+
+		<Carousel interval={null} activeIndex={index} onSelect={handleSelect} touch={true} controls={isDesktopOrLaptop.matches ? true : false}>
+			{
+				art.map((article, index) => {
 					return (
 						<Carousel.Item key={index}>
 							<div
@@ -137,7 +131,7 @@ const NewsCarousel = () => {
 									</div>
 								</div>
 								<div style={styles.actionBtn}>
-									<ActionBtn url={article.url} />
+									<ActionBtn url={article.url} handleSaveArticle={handleSaveArticle} />
 								</div>
 							</div>
 						</Carousel.Item>

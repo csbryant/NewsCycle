@@ -7,6 +7,7 @@ import { SAVE_ARTICLE, LOADING } from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 import API from "../../utils/API";
 
+
 const ActionBtn = ({ url }) => {
   const [state, dispatch] = useStoreContext();
   // const changeBackground = (e) => {
@@ -40,16 +41,14 @@ const ActionBtn = ({ url }) => {
     e.target.style.background = `${Lightgrey}`;
   }
 
-  const styles = {
-    controls: {
-      // backgroundColor: 'white',
-      display: "grid",
-      gridTemplateColumns: "0.3fr 1fr 0.3fr",
-      columnGap: "1rem",
-      justifyItems: "center",
-      alignItems: "center",
-      // opacity: '0',
-    },
+
+	const styles = {
+		controls: {
+			display: 'flex',
+			justifyItems: 'center',
+			alignItems: 'center',
+		},
+
 
     smBtn: {
       borderRadius: "50%",
@@ -59,13 +58,16 @@ const ActionBtn = ({ url }) => {
       opacity: `${Opacity}`,
     },
 
-    lgBtn: {
-      fontSize: "2rem",
-      borderRadius: "50%",
-      width: "6rem",
-      height: "6rem",
-      border: `2px solid ${Lightgrey}`,
-    },
+
+		lgBtn: {
+			fontSize: '2rem',
+			borderRadius: '50%',
+			width: '6rem',
+			height: '6rem',
+			border: `2px solid ${Lightgrey}`,
+			margin: '0 1rem',
+		},
+
 
     icons: {
       fontSize: "1.5rem",
@@ -73,39 +75,49 @@ const ActionBtn = ({ url }) => {
     },
   };
 
-  return (
-    <div>
-      <div style={styles.controls}>
-        <button
-          style={styles.smBtn}
-          onMouseEnter={hoverHandler}
-          onMouseLeave={nonHoverHandler}
-        >
-          <IoMdShareAlt style={styles.icons} />
-        </button>
-        <button
-          style={styles.lgBtn}
-          onMouseEnter={hoverHandler}
-          onMouseLeave={nonHoverHandler}
-          onClick={handleSaveArticle}
-          // disabled={state.loading}
-          // type = "submit"
-        >
-          <BsBookmarkFill />
-        </button>
-        <a href={url}>
-          <button
-            style={styles.smBtn}
-            onMouseEnter={hoverHandler}
-            onMouseLeave={nonHoverHandler}
-          >
-            <BiLink style={styles.icons} />
-          </button>
-        </a>
-      </div>
-    </div>
-    // </div>
-  );
+
+	return (
+		<>
+			<div style={styles.controls}>
+				<div>
+					<button
+						style={styles.smBtn}
+						onMouseEnter={hoverHandler}
+						onMouseLeave={nonHoverHandler}
+					>
+						<IoMdShareAlt style={styles.icons} />
+					</button>
+				</div>
+
+				<div>
+					<button
+						style={styles.lgBtn}
+						onMouseEnter={hoverHandler}
+						onMouseLeave={nonHoverHandler}
+            onClick={handleSaveArticle}
+						// disabled={state.loading}
+						// type = "submit"
+					>
+						<BsBookmarkFill />
+					</button>
+				</div>
+
+				<div>
+					<a href={url}>
+						<button
+							style={styles.smBtn}
+							onMouseEnter={hoverHandler}
+							onMouseLeave={nonHoverHandler}
+						>
+							<BiLink style={styles.icons} />
+						</button>
+					</a>
+				</div>
+			</div>
+		</>
+		// </div>
+	);
+
 };
 
 export default ActionBtn;

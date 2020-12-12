@@ -8,7 +8,7 @@ function Demo() {
 
     return (
         <>
-            <Carousel controls={false} indicators={false}>
+            <Carousel className="specific" controls={false} indicators={false}>
                 <Carousel.Item interval={2500}>
                     <img
                         className="d-block w-100"

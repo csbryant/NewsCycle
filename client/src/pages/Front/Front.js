@@ -13,7 +13,7 @@ const Front = () => {
             <Navigation />
             <Container>
                 <img src={logo} className="logo"></img>
-                <p className="description">The <span class="importantcolor">fastest</span> and <span class="importantcolor">easiest</span> way to read the news.</p>
+                <p className="description">The <span className="importantcolor">fastest</span> and <span className="importantcolor">easiest</span> way to read the news.</p>
                 <br></br>
                 <h1 className="signup" ><a href="/SignUp">Sign Up</a> | <a href="/login">Log In</a> </h1>
                 <Demo />

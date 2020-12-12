@@ -4,15 +4,28 @@ import { staticData } from '../../utils/staticData';
 import API from '../../utils/API';
 import ActionBtn from '../buttons/actionbtn';
 import Carousel from 'react-bootstrap/Carousel'
-import { UPDATE_ARTICLES, LOADING } from '../../utils/actions';
+import { UPDATE_ARTICLES, LOADING, SET_CURRENT_ARTICLE } from '../../utils/actions';
 import { useStoreContext } from '../../utils/GlobalState';
 import { pDesktop, pMobile, h1Desktop, h1Mobile } from '../../styles/config.js';
 
 const NewsCarousel = () => {
+		
+	// const [index, setIndex] = useState(0);
+	// console.log(index)
 	const [state, dispatch] = useStoreContext();
-	const [toggle, setToggle] = useState(true);
+	
+	const handleSelect = (selectedIndex, e) => {
+		setIndex(selectedIndex);
+	
+	
+		// console.log(selectedIndex)
+	};
+
+
+	// const [toggle, setToggle] = useState(true);
 
 	const getTopStories = () => {
+
 		dispatch({ type: LOADING });
 		API.getTopStories()
 			.then((results) => {
@@ -23,32 +36,22 @@ const NewsCarousel = () => {
         dispatch({
           type: SET_CURRENT_ARTICLE,
           payload: {
-            article: results.data.results[0],
+		  article: results.data.results[index],
+		  index: handleSelect
           },
         });
 			})
 			.catch((err) => console.log(err));
 	};
 
-	useEffect(() => {
-		getTopStories();
-	}, []);
+	// useEffect(() => {
+	// 	getTopStories();
+	// }, []);
 
 	const isDesktopOrLaptop = window.matchMedia('(min-width: 1200px)');
 
-	console.log(isDesktopOrLaptop.matches);
-
+	// console.log(isDesktopOrLaptop.matches);
 	
-	const [index, setIndex] = useState(0);
-
-	console.log(index)
-	  
-	const handleSelect = (selectedIndex, e) => {
-	setIndex(selectedIndex);
-
-	console.log(selectedIndex)
-};
-
 	const styles = {
 		cardDesktop: {
 			backgroundColor: 'white',
@@ -82,7 +85,7 @@ const NewsCarousel = () => {
 	};
 
 	return (
-		<Carousel activeIndex={index} onSelect={handleSelect} touch={true}>
+		<Carousel  interval={null} activeIndex={index} onSelect={handleSelect} touch={true}>
 			{state.articles &&
 				state.articles.map((article, index) => {
 					return (

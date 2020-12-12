@@ -6,7 +6,7 @@ import ActionBtn from '../buttons/actionbtn';
 import { Carousel } from 'react-bootstrap';
 import { UPDATE_ARTICLES, LOADING } from '../../utils/actions';
 import { useStoreContext } from '../../utils/GlobalState';
-import { useMediaQuery } from 'react-responsive';
+import { pDesktop, pMobile, h1Desktop, h1Mobile } from '../../styles/config.js';
 
 const NewsCarousel = () => {
 	const [state, dispatch] = useStoreContext();
@@ -44,7 +44,7 @@ const NewsCarousel = () => {
 
 		cardMobile: {
 			backgroundColor: 'white',
-			width: '90%',
+			width: '80%',
 			opacity: '0.96',
 			borderRadius: '0.6rem',
 			position: 'relative',
@@ -61,7 +61,6 @@ const NewsCarousel = () => {
 			alignItems: 'center',
 			justifyContent: 'center',
 			position: 'relative',
-			// bottom: '50px',
 		},
 	};
 
@@ -91,9 +90,24 @@ const NewsCarousel = () => {
 									}
 								>
 									<div style={styles.content}>
-										<h1> {article.title}</h1>
-										<br />
-										<p>{article.abstract}</p>
+										<h1
+											style={
+												isDesktopOrLaptop.matches
+													? { fontSize: '2.4rem' }
+													: { fontSize: '1.8rem' }
+											}
+										>
+											{article.title}
+										</h1>
+										<p
+											style={
+												isDesktopOrLaptop.matches
+													? { fontSize: '1.4rem', marginTop: '1rem', fontWeight: '200' }
+													: { fontSize: '1.2rem', marginTop: '1rem', fontWeight: '200' }
+											}
+										>
+											{article.abstract}
+										</p>
 									</div>
 								</div>
 								<div style={styles.actionBtn}>

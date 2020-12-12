@@ -17,7 +17,7 @@ const h1Desktop = {
 	padding: '0',
 	margin: '0 !important',
 	fontFamily: primaryFont,
-	fontSize: '1.8rem !important',
+	fontSize: '10rem !important',
 };
 
 const pMobile = {

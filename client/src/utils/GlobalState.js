@@ -13,13 +13,13 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_CURRENT_ARTICLE:
-      return {
-        ...state,
-        currentArticle: action.payload.article,
-        index: action.payload.index,
-        loading: false,
-      };
+    // case SET_CURRENT_ARTICLE:
+    //   return {
+    //     ...state,
+    //     currentArticle: action.payload.article,
+    //     index: action.payload.index,
+    //     loading: false,
+    //   };
     case SAVE_ARTICLE:
       return {
         ...state,
@@ -27,12 +27,12 @@ const reducer = (state, action) => {
         loading: false,
       };
 
-    case UPDATE_ARTICLES:
-      return {
-        ...state,
-        articles: [...action.payload],
-        loading: false,
-      };
+    // case UPDATE_ARTICLES:
+    //   return {
+    //     ...state,
+    //     articles: [...action.payload],
+    //     loading: false,
+    //   };
 
     case UPDATE_FAVORITES:
       return {
@@ -62,14 +62,14 @@ const reducer = (state, action) => {
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-    articles: [],
-    currentArticle: {
-      index: 0,
-      title: "",
-      abstract: "",
-      url: "",
-      multimedia: [],
-    },
+    // articles: [],
+    // currentArticle: {
+    //   index: 0,
+    //   title: "",
+    //   abstract: "",
+    //   url: "",
+    //   multimedia: [],
+    // },
     favorites: [],
     loading: false,
   });

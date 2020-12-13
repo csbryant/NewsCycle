@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { Redirect } from 'react-router-dom'
 import { useUserContext } from '../../context/userContext'
 import Navigation from '../../components/navigation/navigation'
 import { Container } from 'react-bootstrap';
@@ -38,15 +37,15 @@ const Login = (props) => {
     <div>
       <Navigation />
       <Container>
-        <img src={logo} className="logo"></img>
+        <img src={logo} className="logo" alt="NewsCycle"></img>
         <p className="description">The <span className="importantcolor">fastest</span> and <span className="importantcolor">easiest</span> way to read the news.</p>
         <br></br>
         <h1 className="signup" ><a href="/SignUp">Sign Up</a> | <span className="thispage">Log In</span> </h1>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input ref={username} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-          <label ref={password} for="exampleInputPassword1">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+          <label for="exampleInputPassword1">Password</label>
+          <input ref={password} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
         </div>
         <button type="submit" className="btn btn-primary" onClick={tryLogin}>Submit</button>
       </Container>

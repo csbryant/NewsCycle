@@ -28,7 +28,8 @@ const NewsCarousel = () => {
     getTopStories();
   }, []);
 
-  // console.logart.multimedia[0].url
+
+
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");

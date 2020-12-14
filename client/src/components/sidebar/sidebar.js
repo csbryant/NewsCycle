@@ -12,12 +12,13 @@ import API from "../../utils/API";
 
 const Sidebar = () => {
   const [state, dispatch] = useStoreContext();
+  const [favart, setfavArt] = useState([]);
 
   const getFavorites = () => {
     dispatch({ type: LOADING });
     API.getFavorites()
       .then((result) => {
-        console.log(result);
+        setfavArt(result.data.favorites)
         dispatch({
           type: UPDATE_FAVORITES,
           payload: result.data.favorites,
@@ -35,14 +36,16 @@ const Sidebar = () => {
 
   useEffect(() => {
     getFavorites();
-  }, [state.favorites]);
+  }, [favart]);
+
+  console.log(favart)
 
   return (
     <header className="shadow">
       <div className="sidenav">
         <div>This is the link to my Profile</div>
         <ul>
-          {state.favorites.map((article, index) => {
+          {favart.map((article, index) => {
             return (
               <ArticleList
                 title={article.title}

@@ -1,0 +1,117 @@
+@import "../../styles/config";
+
+
+.logo {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: auto;
+}
+
+.description {
+    text-align: center;
+    font-weight: 200;
+    font-size: 22px;
+    color: #353535;
+}
+
+.signup a {
+    color: #353535;
+    font-weight: 300;
+}
+
+.signup a:hover {
+    color: #428158;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.signup {
+    text-align: center;
+    font-weight: 200;
+    font-size: 22px;
+}
+
+.importantcolor {
+    font-weight: 400;
+    color: #428158;
+}
+
+.teamleft {
+    width: 20%;
+    height: auto;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.teamright {
+    width: 20%;
+    height: auto;
+    float: right;
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.rightnames {
+    text-align: right;
+}
+
+.nextpage {
+    display: block;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 7%;
+    height: auto;
+    opacity: 80%;
+}
+
+.nextpage:hover {
+    opacity: 100%;
+}
+
+@media only screen and (max-width : 812px) {  
+    .logo {
+        margin-top: 60px;
+    }
+    .teamleft {
+        width: 25%;
+        height: auto;
+    }
+    .teamright {
+        width: 25%;
+        height: auto;
+    }
+    .nextpage {
+        margin-top: 20px;
+        width: 5%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width : 612px) {  
+    .logo {
+        margin-top: 60px;
+    }
+    .teamleft {
+        width: 30%;
+        height: auto;
+    }
+    .teamright {
+        width: 30%;
+        height: auto;
+    }
+    .nextpage {
+        margin-top: 5px;
+        width: 5%;
+        height: auto;
+    }
+}

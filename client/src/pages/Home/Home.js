@@ -15,7 +15,7 @@ function Home() {
 	const styles = {
 		gridMobile: {
 			display: 'grid',
-			gridTemplateRows: '5% 95%',
+			gridTemplateRows: '6% 94%',
 		},
 	};
 

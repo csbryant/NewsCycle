@@ -5,7 +5,7 @@ import { Nav } from 'react-bootstrap';
 import logo from '../../img/180icontransparent.png'
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-function Navigation() {
+function NavigationTeam() {
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -21,7 +21,7 @@ function Navigation() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link href="/team">About Us</Nav.Link>
+                        <Nav.Link href="/login">Log In</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -31,4 +31,4 @@ function Navigation() {
     );
 }
 
-export default Navigation;
+export default NavigationTeam;

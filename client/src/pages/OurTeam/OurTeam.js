@@ -40,7 +40,7 @@ const OurTeam = () => {
                             className="teamright"
                         />
                         <h3 className="rightnames">Chris Bryant</h3>
-                        <p className="teamrighttext">Chris is a front-end developer from Los Angeles, CA with a passion for creating interfaces that are innovative, yet familiar and simple to use. They believe in the importance of capturing a client’s voice and projecting it in every piece of code. They like to describe myself as a community builder, both in creating products that connect people online, and also in communicating effectively with others in the work environment.</p>
+                        <p className="teamrighttext">Chris is a front-end developer with a passion for creating interfaces that are innovative, yet familiar and simple to use. They believe in the importance of capturing a client’s voice and projecting it in every piece of code. They are currently serving on the board of directors for LAGaymers which is a non-profit organization that helps with LGBTQ+ diversity in the video game industry.</p>
                     </Container>
                    <a href="/moreteam"><img src={next} className="nextpage" alt="nextpage"></img></a>
                 </div>

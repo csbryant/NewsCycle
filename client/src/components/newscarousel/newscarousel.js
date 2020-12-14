@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./_newscarousel.scss";
-import { staticData } from "../../utils/staticData";
 import API from "../../utils/API";
 import ActionBtn from "../buttons/actionbtn";
 import Carousel from "react-bootstrap/Carousel";
@@ -28,6 +27,8 @@ const NewsCarousel = () => {
   useEffect(() => {
     getTopStories();
   }, []);
+
+  // console.logart.multimedia[0].url
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
@@ -64,17 +65,25 @@ const NewsCarousel = () => {
       position: "relative",
     },
   };
-  console.log(index);
+  // console.log(index);
 
   const handleSaveArticle = () => {
     let currentArt = art[index];
+    let jsonArt = JSON.stringify(currentArt);
+    // console.log(jsonArt);
     dispatch({ type: LOADING });
-    dispatch({
-      type: SAVE_ARTICLE,
-      payload: currentArt,
-    });
+    API.saveArticle({ jsonArt })
+      .then((result) => {
+        // console.log(result);
+        dispatch({
+          type: SAVE_ARTICLE,
+          payload: result.data.favorites,
+        });
+      })
+      .catch((err) => console.log(err));
   };
-  console.log(state.favorites);
+  // console.log(state.favorites);
+
   return (
     <Carousel
       interval={null}

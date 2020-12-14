@@ -11,11 +11,12 @@ router.get("/users", (req, res) => {
 // Route to create article and then place it in the user's favorites
 router.post("/articles", ({ body, session }, res) => {
   let id = session.passport.user;
+  console.log(body);
   db.Article.create(body)
-    .then(({ _id }) =>
+    .then((articleid) =>
       db.User.findByIdAndUpdate(
         id,
-        { $push: { favorites: _id } },
+        { $push: { favorites: articleid } },
         { new: true }
       )
     )

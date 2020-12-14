@@ -14,4 +14,7 @@ export default {
   saveArticle: function () {
     return axios.post("/api/articles");
   },
+  getFavorites: function () {
+    return axios.get("/api/articles");
+  },
 };

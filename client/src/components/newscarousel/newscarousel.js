@@ -69,10 +69,15 @@ const NewsCarousel = () => {
 
   const handleSaveArticle = () => {
     let currentArt = art[index];
-    let jsonArt = JSON.stringify(currentArt);
-    // console.log(jsonArt);
+    // let jsonArt = JSON.stringify(currentArt);
+    console.log(currentArt);
     dispatch({ type: LOADING });
-    API.saveArticle({ jsonArt })
+    API.saveArticle({
+      title: currentArt.title,
+      abstract: currentArt.abstract,
+      url: currentArt.url,
+      multimedia: currentArt.multimedia,
+    })
       .then((result) => {
         // console.log(result);
         dispatch({

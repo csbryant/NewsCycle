@@ -11,8 +11,8 @@ export default {
     return axios.get(BASEURL + APIKEY);
   },
   // Saves an article to the reading list
-  saveArticle: function () {
-    return axios.post("/api/articles");
+  saveArticle: function (data) {
+    return axios.post("/api/articles", data);
   },
   getFavorites: function () {
     return axios.get("/api/articles");

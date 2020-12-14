@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { Redirect } from "react-router-dom";
-import { useUserContext } from "../../context/userContext";
-import Navigation from "../../components/navigation/navigation";
-import { Container } from "react-bootstrap";
-import logo from "../../img/logo.png";
-import "./_login.scss";
+import React, { useRef } from 'react'
+import { useUserContext } from '../../context/userContext'
+import Navigation from '../../components/navigation/navigation'
+import { Container } from 'react-bootstrap';
+import logo from '../../img/logo.png';
+import './_login.scss';
+
 const Login = (props) => {
   console.log(props);
   const username = useRef();
@@ -40,11 +40,10 @@ const Login = (props) => {
     <div>
       <Navigation />
       <Container>
-        <img src={logo} className="logo"></img>
-        <p className="description">
-          The <span className="importantcolor">fastest</span> and{" "}
-          <span className="importantcolor">easiest</span> way to read the news.
-        </p>
+
+        <img src={logo} className="logo" alt="NewsCycle"></img>
+        <p className="description">The <span className="importantcolor">fastest</span> and <span className="importantcolor">easiest</span> way to read the news.</p>
+
         <br></br>
         <h1 className="signup">
           <a href="/SignUp">Sign Up</a> |{" "}
@@ -52,22 +51,11 @@ const Login = (props) => {
         </h1>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
-          <input
-            ref={username}
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-          />
+
+          <input ref={username} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
           <label htmlFor="exampleInputPassword1">Password</label>
-          <input
-            ref={password}
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-          />
+          <input ref={password} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+
         </div>
         <button type="submit" className="btn btn-primary" onClick={tryLogin}>
           Submit

@@ -23,7 +23,7 @@ const reducer = (state, action) => {
     case SAVE_ARTICLE:
       return {
         ...state,
-        favorites: [action.payload, ...state.favorites],
+        articleIDs: [action.payload],
         loading: false,
       };
 
@@ -70,6 +70,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     //   url: "",
     //   multimedia: [],
     // },
+    articleIDs: [],
     favorites: [],
     loading: false,
   });

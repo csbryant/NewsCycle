@@ -32,7 +32,7 @@ const NewsCarousel = () => {
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
-  console.log(isDesktopOrLaptop.matches);
+  // console.log(isDesktopOrLaptop.matches);
 
   const styles = {
     cardDesktop: {

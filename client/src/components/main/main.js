@@ -19,7 +19,6 @@ class Main extends React.Component {
 		this.setState({
 		  topStories: res.data.results,
 		});
-		console.log(res.data.results)
 	  });
 	}
   	

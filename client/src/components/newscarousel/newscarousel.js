@@ -33,7 +33,7 @@ const NewsCarousel = () => {
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
-  console.log(isDesktopOrLaptop.matches);
+
 
   const styles = {
     cardDesktop: {
@@ -66,12 +66,12 @@ const NewsCarousel = () => {
       position: "relative",
     },
   };
-  // console.log(index);
+ 
 
   const handleSaveArticle = () => {
     let currentArt = art[index];
     // let jsonArt = JSON.stringify(currentArt);
-    console.log(currentArt);
+
     dispatch({ type: LOADING });
     API.saveArticle({
       title: currentArt.title,
@@ -80,7 +80,7 @@ const NewsCarousel = () => {
       multimedia: currentArt.multimedia,
     })
       .then((result) => {
-        // console.log(result);
+     
         dispatch({
           type: SAVE_ARTICLE,
           payload: result.data.favorites,
@@ -88,7 +88,7 @@ const NewsCarousel = () => {
       })
       .catch((err) => console.log(err));
   };
-  // console.log(state.favorites);
+ 
 
   return (
     <Carousel

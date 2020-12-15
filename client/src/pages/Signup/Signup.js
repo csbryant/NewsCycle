@@ -7,7 +7,7 @@ import './_signup.scss'
 
 
 const Signup = (props) => {
-  console.log(props);
+
   const username = useRef();
   const password = useRef();
 
@@ -18,7 +18,7 @@ const Signup = (props) => {
       email: username.current.value,
       password: password.current.value,
     };
-    console.log(signupObj);
+    
     fetch("/auth/register_login", {
       method: "POST",
       headers: {

@@ -49,7 +49,7 @@ const Sidebar = () => {
 		getFavorites();
 	}, [favart]);
 
-	console.log(favart);
+
 
 	const styles = {
 		logoutSection: {

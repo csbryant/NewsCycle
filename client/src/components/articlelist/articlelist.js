@@ -3,10 +3,10 @@ import './_articlelist.scss';
 import { BiLink } from 'react-icons/bi';
 import { GrFormClose } from 'react-icons/gr';
 
-const ArticleList = ({ title, url, backgroundImageUrl, key }) => {
-	const deleteArticle = () => {
-		alert('deleted!');
-	};
+const ArticleList = ({ title, url, backgroundImageUrl, key, onClick }) => {
+	// const deleteArticle = () => {
+	// 	alert('deleted!');
+	// };
 
 	const styles = {
 		articleContent: {
@@ -55,7 +55,7 @@ const ArticleList = ({ title, url, backgroundImageUrl, key }) => {
 					</a>
 				</div>
 
-				<div style={styles.iconBg} onClick={deleteArticle}>
+				<div style={styles.iconBg} onClick={onClick}>
 					<GrFormClose style={{ marginTop: '4px', fontSize: '1.2rem' }} />
 				</div>
 			</div>

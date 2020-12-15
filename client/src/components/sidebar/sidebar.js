@@ -27,12 +27,23 @@ const Sidebar = () => {
 			.catch((err) => console.log(err));
 	};
 
-	const removeFromFavorites = (id) => {
-		dispatch({
-			type: REMOVE_FAVORITE,
-			payload: { _id: id },
-		});
-	};
+	const removeArticle = id => {
+		API.deleteArticle(id)
+		  .then((res) => {
+			dispatch({
+			  type: REMOVE_FAVORITE,
+			  _id: id
+			});
+		  })
+		  .catch(err => console.log(err));
+	  };
+
+	// const removeFromFavorites = (id) => {
+	// 	dispatch({
+	// 		type: REMOVE_FAVORITE,
+	// 		payload: { _id: id },
+	// 	});
+	// };
 
 	useEffect(() => {
 		getFavorites();
@@ -78,6 +89,7 @@ const Sidebar = () => {
 								url={article.url}
 								key={index}
 								backgroundImageUrl={article.multimedia[1].url}
+								onClick={() => removeArticle(article._id)} 
 							/>
 						);
 					})}

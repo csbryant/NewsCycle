@@ -16,6 +16,7 @@ function Home() {
 		gridMobile: {
 			display: 'grid',
 			gridTemplateRows: '6% 94%',
+			overflow: 'hidden',
 		},
 	};
 

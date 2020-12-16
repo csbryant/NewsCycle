@@ -7,7 +7,6 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Front from './pages/Front/Front';
 import Team from './pages/OurTeam/OurTeam';
-import MoreTeam from './pages/MoreTeam/MoreTeam';
 import { UserProvider } from './context/userContext';
 import { StoreProvider } from "./utils/GlobalState";
 
@@ -25,7 +24,6 @@ function App() {
 							<Route exact path='/' component={(props) => <Front {...props} />} />
 							<Route exact path='/login' component={(props) => <Login {...props} />} />
 							<Route exact path='/team' component={(props) => <Team {...props} />} />
-							<Route exact path='/moreteam' component={(props) => <MoreTeam {...props} />} />
 							<Route
 								exact
 								path='/signup'

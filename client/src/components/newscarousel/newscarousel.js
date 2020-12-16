@@ -7,6 +7,8 @@ import { SAVE_ARTICLE, LOADING } from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 import { pDesktop, pMobile, h1Desktop, h1Mobile } from "../../styles/config.js";
 
+
+
 const NewsCarousel = () => {
   const [index, setIndex] = useState(0);
   const [state, dispatch] = useStoreContext();
@@ -66,7 +68,7 @@ const NewsCarousel = () => {
       position: "relative",
     },
   };
- 
+
 
   const handleSaveArticle = () => {
     let currentArt = art[index];
@@ -80,7 +82,7 @@ const NewsCarousel = () => {
       multimedia: currentArt.multimedia,
     })
       .then((result) => {
-     
+
         dispatch({
           type: SAVE_ARTICLE,
           payload: result.data.favorites,
@@ -88,7 +90,7 @@ const NewsCarousel = () => {
       })
       .catch((err) => console.log(err));
   };
- 
+
 
   return (
     <Carousel
@@ -136,15 +138,15 @@ const NewsCarousel = () => {
                     style={
                       isDesktopOrLaptop.matches
                         ? {
-                            fontSize: "1.4rem",
-                            marginTop: "1rem",
-                            fontWeight: "200",
-                          }
+                          fontSize: "1.4rem",
+                          marginTop: "1rem",
+                          fontWeight: "200",
+                        }
                         : {
-                            fontSize: "1.2rem",
-                            marginTop: "1rem",
-                            fontWeight: "200",
-                          }
+                          fontSize: "1.2rem",
+                          marginTop: "1rem",
+                          fontWeight: "200",
+                        }
                     }
                   >
                     {article.abstract}

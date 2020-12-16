@@ -3,8 +3,6 @@ import axios from "axios";
 const BASEURL = "https://api.nytimes.com/svc/topstories/v2/us.json?api-key=";
 const APIKEY = process.env.REACT_APP_NYT_API_KEY;
 
-
-
 export default {
   // Gets all users
   getTopStories: function () {
@@ -19,7 +17,8 @@ export default {
   },
 
   // Deletes the post with the given id
-  deleteArticle: function(id) {
-    return axios.delete("/api/articles/" + id);
-    },
+  deleteArticle: function (query) {
+    console.log(query);
+    return axios.put("/api/articles", { query });
+  },
 };

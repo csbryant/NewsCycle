@@ -35,7 +35,6 @@ const reducer = (state, action) => {
       };
 
     case INITIAL_LOAD:
-      console.log(action.payload);
       return {
         ...state,
         favorites: [...action.payload],

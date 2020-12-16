@@ -3,10 +3,7 @@ import "./_articlelist.scss";
 import { BiLink } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 
-
-const ArticleList = ({ title, url, backgroundImageUrl, key, onClick }) => {
-
-
+const ArticleList = ({ title, url, backgroundImageUrl, onClick }) => {
   const styles = {
     articleContent: {
       width: "100%",
@@ -54,14 +51,12 @@ const ArticleList = ({ title, url, backgroundImageUrl, key, onClick }) => {
           </a>
         </div>
 
-
-				<div style={styles.iconBg} onClick={onClick}>
-					<GrFormClose style={{ marginTop: '4px', fontSize: '1.2rem' }} />
-				</div>
-			</div>
-		</div>
-	);
-
+        <div style={styles.iconBg} onClick={onClick}>
+          <GrFormClose style={{ marginTop: "4px", fontSize: "1.2rem" }} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ArticleList;

@@ -7,30 +7,22 @@ import {
   LOADING,
   UPDATE_FAVORITES,
 } from "../../utils/actions";
+import API from "../../utils/API";
 
 const Sidebar = () => {
   const [state, dispatch] = useStoreContext();
 
-  const removeFromFavorites = (id) => {
-    dispatch({
-      type: REMOVE_FAVORITE,
-      payload: { _id: id },
-    });
+  const removeArticle = (id) => {
+    console.log(id);
+    API.deleteArticle(id)
+      .then((res) => {
+        dispatch({
+          type: REMOVE_FAVORITE,
+          payload: { _id: id },
+        });
+      })
+      .catch((err) => console.log(err));
   };
-
-
-	const removeArticle = id => {
-		API.deleteArticle(id)
-		  .then((res) => {
-			dispatch({
-			  type: REMOVE_FAVORITE,
-			  _id: id
-			});
-		  })
-		  .catch(err => console.log(err));
-	  };
-
-	
 
   const styles = {
     logoutSection: {
@@ -51,7 +43,6 @@ const Sidebar = () => {
       color: "white",
     },
   };
-
 
   return (
     <header className="shadow">
@@ -79,7 +70,6 @@ const Sidebar = () => {
       </div>
     </header>
   );
-
 };
 
 export default Sidebar;

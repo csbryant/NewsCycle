@@ -16,12 +16,10 @@ function Home() {
     setClick({ clicked: !click.clicked });
   };
 
-
   const getInitialFavorites = () => {
     dispatch({ type: LOADING });
     API.getFavorites()
       .then((result) => {
-        console.log(result.data.favorites);
         dispatch({
           type: INITIAL_LOAD,
           payload: result.data.favorites,
@@ -30,10 +28,7 @@ function Home() {
       .catch((err) => console.log(err));
   };
 
-
   useEffect(() => getInitialFavorites(), []);
-
-  console.log(state);
 
   const styles = {
     gridMobile: {

@@ -7,8 +7,6 @@ import { ADD_FAVORITE, LOADING } from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 import { pDesktop, pMobile, h1Desktop, h1Mobile } from "../../styles/config.js";
 
-
-
 const NewsCarousel = () => {
   const [index, setIndex] = useState(0);
   const [state, dispatch] = useStoreContext();
@@ -32,7 +30,6 @@ const NewsCarousel = () => {
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
-
 
   const styles = {
     cardDesktop: {
@@ -66,10 +63,8 @@ const NewsCarousel = () => {
     },
   };
 
-
   const handleSaveArticle = () => {
     let currentArt = art[index];
-
     dispatch({ type: LOADING });
     API.saveArticle({
       title: currentArt.title,
@@ -78,11 +73,6 @@ const NewsCarousel = () => {
       multimedia: currentArt.multimedia,
     })
       .then((result) => {
-
-        console.log(result);
-
-
-
         dispatch({
           type: ADD_FAVORITE,
           payload: [JSON.parse(result.config.data)],
@@ -90,7 +80,6 @@ const NewsCarousel = () => {
       })
       .catch((err) => console.log(err));
   };
-
 
   return (
     <Carousel
@@ -138,15 +127,15 @@ const NewsCarousel = () => {
                     style={
                       isDesktopOrLaptop.matches
                         ? {
-                          fontSize: "1.4rem",
-                          marginTop: "1rem",
-                          fontWeight: "200",
-                        }
+                            fontSize: "1.4rem",
+                            marginTop: "1rem",
+                            fontWeight: "200",
+                          }
                         : {
-                          fontSize: "1.2rem",
-                          marginTop: "1rem",
-                          fontWeight: "200",
-                        }
+                            fontSize: "1.2rem",
+                            marginTop: "1rem",
+                            fontWeight: "200",
+                          }
                     }
                   >
                     {article.abstract}

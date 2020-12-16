@@ -3,7 +3,7 @@ import "./_newscarousel.scss";
 import API from "../../utils/API";
 import ActionBtn from "../buttons/actionbtn";
 import Carousel from "react-bootstrap/Carousel";
-import { SAVE_ARTICLE, LOADING } from "../../utils/actions";
+import { ADD_FAVORITE, LOADING } from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 import { pDesktop, pMobile, h1Desktop, h1Mobile } from "../../styles/config.js";
 
@@ -29,9 +29,6 @@ const NewsCarousel = () => {
   useEffect(() => {
     getTopStories();
   }, []);
-
-
-
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
@@ -72,7 +69,6 @@ const NewsCarousel = () => {
 
   const handleSaveArticle = () => {
     let currentArt = art[index];
-    // let jsonArt = JSON.stringify(currentArt);
 
     dispatch({ type: LOADING });
     API.saveArticle({
@@ -83,9 +79,13 @@ const NewsCarousel = () => {
     })
       .then((result) => {
 
+        console.log(result);
+
+
+
         dispatch({
-          type: SAVE_ARTICLE,
-          payload: result.data.favorites,
+          type: ADD_FAVORITE,
+          payload: [JSON.parse(result.config.data)],
         });
       })
       .catch((err) => console.log(err));

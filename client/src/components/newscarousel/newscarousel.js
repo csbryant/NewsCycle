@@ -3,7 +3,7 @@ import "./_newscarousel.scss";
 import API from "../../utils/API";
 import ActionBtn from "../buttons/actionbtn";
 import Carousel from "react-bootstrap/Carousel";
-import { SAVE_ARTICLE, LOADING } from "../../utils/actions";
+import { ADD_FAVORITE, LOADING } from "../../utils/actions";
 import { useStoreContext } from "../../utils/GlobalState";
 import { pDesktop, pMobile, h1Desktop, h1Mobile } from "../../styles/config.js";
 
@@ -30,7 +30,6 @@ const NewsCarousel = () => {
 
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
-  // console.log(isDesktopOrLaptop.matches);
 
   const styles = {
     cardDesktop: {
@@ -63,12 +62,9 @@ const NewsCarousel = () => {
       position: "relative",
     },
   };
-  // console.log(index);
 
   const handleSaveArticle = () => {
     let currentArt = art[index];
-    // let jsonArt = JSON.stringify(currentArt);
-    console.log(currentArt);
     dispatch({ type: LOADING });
     API.saveArticle({
       title: currentArt.title,
@@ -79,13 +75,12 @@ const NewsCarousel = () => {
       .then((result) => {
         console.log(result);
         dispatch({
-          type: "addFav",
+          type: ADD_FAVORITE,
           payload: [JSON.parse(result.config.data)],
         });
       })
       .catch((err) => console.log(err));
   };
-  // console.log(state.favorites);
 
   return (
     <Carousel

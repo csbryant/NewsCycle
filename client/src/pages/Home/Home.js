@@ -7,11 +7,7 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { useStoreContext } from "../../utils/GlobalState";
 import API from "../../utils/API";
-import {
-  REMOVE_FAVORITE,
-  LOADING,
-  UPDATE_FAVORITES,
-} from "../../utils/actions";
+import { INITIAL_LOAD, LOADING } from "../../utils/actions";
 
 function Home() {
   const [state, dispatch] = useStoreContext();
@@ -20,19 +16,23 @@ function Home() {
     setClick({ clicked: !click.clicked });
   };
 
-  const getFavorites = () => {
+  const getInitialFavorites = () => {
     dispatch({ type: LOADING });
     API.getFavorites()
       .then((result) => {
+        console.log(result.data.favorites);
         dispatch({
-          type: "addFav",
+          type: INITIAL_LOAD,
           payload: result.data.favorites,
         });
       })
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => getFavorites(), []);
+  useEffect(() => getInitialFavorites(), []);
+
+  console.log(state);
+
   const styles = {
     gridMobile: {
       display: "grid",

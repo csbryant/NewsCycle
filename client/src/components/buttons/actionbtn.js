@@ -6,10 +6,10 @@ import { Lightgrey, PrimaryColor, Opacity } from '../../styles/config';
 import { SAVE_ARTICLE, LOADING } from '../../utils/actions';
 import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/API';
-import Popover from 'react-bootstrap/Popover'
-import Overlay from 'react-bootstrap/Overlay'
-import Button from 'react-bootstrap/Button'
-import { 
+import Popover from 'react-bootstrap/Popover';
+import Overlay from 'react-bootstrap/Overlay';
+import { Modal, Button } from 'react-bootstrap';
+import {
 	FacebookShareButton,
 	FacebookMessengerShareButton,
 	LinkedinShareButton,
@@ -24,8 +24,7 @@ import {
 	PinterestIcon,
 	EmailIcon,
 	RedditIcon,
-	} from "react-share";
-
+} from 'react-share';
 
 const ActionBtn = ({ url, handleSaveArticle }) => {
 	// const [state, dispatch] = useStoreContext();
@@ -46,15 +45,14 @@ const ActionBtn = ({ url, handleSaveArticle }) => {
 	//   e.target.style.background = `${Lightgrey}`;
 	// }
 
-	const [show, setShow] = useState(false);
+	// const [show, setShow] = useState(false);
 	const [target, setTarget] = useState(null);
 	const ref = useRef(null);
 
-	const handleClick = (event) => {
-		setShow(!show);
-		setTarget(event.target);
-	  };
-	
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	const styles = {
 		controls: {
@@ -67,8 +65,8 @@ const ActionBtn = ({ url, handleSaveArticle }) => {
 			borderRadius: '50%',
 			width: '3rem',
 			height: '3rem',
-			border: `2px solid ${Lightgrey}`,
-			opacity: `${Opacity}`,
+			border: `1px solid white`,
+			background: `${Lightgrey}`,
 		},
 
 		lgBtn: {
@@ -76,13 +74,20 @@ const ActionBtn = ({ url, handleSaveArticle }) => {
 			borderRadius: '50%',
 			width: '6rem',
 			height: '6rem',
-			border: `2px solid ${Lightgrey}`,
+			border: `2px solid white`,
 			margin: '0 1rem',
+			background: `${Lightgrey}`,
 		},
 
 		icons: {
 			fontSize: '1.5rem',
 			padding: '0.1rem',
+		},
+
+		modalContent: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
 		},
 	};
 
@@ -94,68 +99,67 @@ const ActionBtn = ({ url, handleSaveArticle }) => {
 						style={styles.smBtn}
 						// onMouseEnter={hoverHandler}
 						// onMouseLeave={nonHoverHandler}
-						onClick={handleClick}
+						onClick={handleShow}
 					>
 						<IoMdShareAlt style={styles.icons} />
 					</button>
-					<Overlay
+
+					<Modal
+						show={show}
+						onHide={handleClose}
+						size='sm'
+						aria-labelledby='example-modal-sizes-title-sm'
+						centered
+					>
+						<Modal.Header closeButton>
+							<Modal.Title>Share</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<div style={styles.modalContent}>
+								<FacebookShareButton url={url}>
+									<FacebookIcon size={36} />
+								</FacebookShareButton>
+
+								<FacebookMessengerShareButton url={url}>
+									<FacebookMessengerIcon size={36} />
+								</FacebookMessengerShareButton>
+
+								<TwitterShareButton url={url}>
+									<TwitterIcon size={36} />
+								</TwitterShareButton>
+
+								<LinkedinShareButton url={url}>
+									<LinkedinIcon size={36} />
+								</LinkedinShareButton>
+
+								<PinterestShareButton url={url}>
+									<PinterestIcon size={36} />
+								</PinterestShareButton>
+
+								<RedditShareButton url={url}>
+									<RedditIcon size={36} />
+								</RedditShareButton>
+
+								<EmailShareButton url={url}>
+									<EmailIcon size={36} />
+								</EmailShareButton>
+							</div>
+						</Modal.Body>
+						<Modal.Footer>
+							<Button variant='secondary' onClick={handleClose}>
+								Close
+							</Button>
+						</Modal.Footer>
+					</Modal>
+					{/* <Overlay
 						show={show}
 						target={target}
-						placement="bottom"
+						placement='bottom'
 						container={ref.current}
 						containerPadding={20}
 					>
-       				<Popover id="popover-contained">
-						<Popover.Title as="h3">Share</Popover.Title>
-						<Popover.Content>
-							<FacebookShareButton 
-								url={url}
-							>
-							<FacebookIcon size={36} />
-							</FacebookShareButton>
 
-							<FacebookMessengerShareButton
-								url={url}
-							>
-							<FacebookMessengerIcon size={36} />
-							</FacebookMessengerShareButton>
-
-							<TwitterShareButton
-								url={url}
-							>
-							<TwitterIcon size={36} />
-							</TwitterShareButton>
-
-							<LinkedinShareButton
-								url={url}
-							>
-							<LinkedinIcon size={36} />
-							</LinkedinShareButton>
-
-							<PinterestShareButton
-								url={url}
-							>
-							<PinterestIcon size={36} />
-							</PinterestShareButton>
-
-							<RedditShareButton
-								url={url}
-							>
-							<RedditIcon size={36} />
-							</RedditShareButton>
-
-							<EmailShareButton
-								url={url}
-							>
-							<EmailIcon size={36} />
-							</EmailShareButton>
-
-
-
-         				</Popover.Content>
-        			</Popover>
-      				</Overlay>
-					
+					</Overlay> */}
 				</div>
 
 				<div>

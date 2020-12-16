@@ -6,17 +6,17 @@ import logo from '../../img/logo.png';
 import './_login.scss';
 
 const Login = (props) => {
-  console.log(props);
+
   const username = useRef();
   const password = useRef();
-  console.log(password);
+ 
   const [user, dispatch] = useUserContext();
   const tryLogin = () => {
     let loginObj = {
       email: username.current.value,
       password: password.current.value,
     };
-    console.log(loginObj);
+    
     fetch("/auth/register_login", {
       method: "POST",
       headers: {

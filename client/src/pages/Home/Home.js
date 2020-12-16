@@ -16,6 +16,7 @@ function Home() {
     setClick({ clicked: !click.clicked });
   };
 
+
   const getInitialFavorites = () => {
     dispatch({ type: LOADING });
     API.getFavorites()
@@ -29,6 +30,7 @@ function Home() {
       .catch((err) => console.log(err));
   };
 
+
   useEffect(() => getInitialFavorites(), []);
 
   console.log(state);
@@ -37,6 +39,7 @@ function Home() {
     gridMobile: {
       display: "grid",
       gridTemplateRows: "6% 94%",
+      overflow: "hidden",
     },
   };
 

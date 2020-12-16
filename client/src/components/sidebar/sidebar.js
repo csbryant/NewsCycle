@@ -18,7 +18,19 @@ const Sidebar = () => {
     });
   };
 
-  console.log(state);
+
+	const removeArticle = id => {
+		API.deleteArticle(id)
+		  .then((res) => {
+			dispatch({
+			  type: REMOVE_FAVORITE,
+			  _id: id
+			});
+		  })
+		  .catch(err => console.log(err));
+	  };
+
+	
 
   const styles = {
     logoutSection: {
@@ -40,6 +52,7 @@ const Sidebar = () => {
     },
   };
 
+
   return (
     <header className="shadow">
       <div className="sidenav">
@@ -58,6 +71,7 @@ const Sidebar = () => {
                 url={article.url}
                 key={index}
                 backgroundImageUrl={article.multimedia[1].url}
+                onClick={() => removeArticle(article._id)}
               />
             );
           })}
@@ -65,6 +79,7 @@ const Sidebar = () => {
       </div>
     </header>
   );
+
 };
 
 export default Sidebar;

@@ -11,18 +11,19 @@ router.get("/users", (req, res) => {
 // Route to create article and then place it in the user's favorites
 router.post("/articles", ({ body, session }, res) => {
   let id = session.passport.user;
-  console.log(body);
+  // console.log(body);
+  let artId;
   db.Article.create(body)
-    .then((articleid) =>
+    .then((articleid) => {
+      artId = articleid;
       db.User.findByIdAndUpdate(
         id,
         { $push: { favorites: articleid } },
         { new: true }
-      )
-    )
-    .then((user) => {
-      console.log(user);
-      res.json(user);
+      ).then((user) => {
+        console.log(user);
+        res.json(user.favorites.filter((id) => id == artId));
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -32,7 +33,7 @@ router.post("/articles", ({ body, session }, res) => {
 // Gets all articles from the user who is logged in
 router.get("/articles", ({ session }, res) => {
   let id = session.passport.user;
-  console.log(id);
+  // console.log(id);
   db.User.findById(id)
     .populate("favorites")
     .then((articles) => {
@@ -61,11 +62,22 @@ router.put("/users/:id", ({ body, params }, res) => {
 });
 
 // Deletes single articles
-router.delete("/articles/:id", ({ params }, res) => {
-  db.Article.findByIdAndDelete(params.id, (err) => {
-    if (err) console.log(err);
-    res.status(204).json({});
-  });
+router.put("/articles", ({ query, session }, res) => {
+  let id = session.passport.user;
+  console.log({ id });
+  console.log({ query });
+  db.User.findByIdAndUpdate(
+    id,
+    { $pull: { favorites: query.id } },
+    { new: true }
+  )
+    .then((user) => {
+      console.log(user);
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // Need a route to delete all the articles from the current user

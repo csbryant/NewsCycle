@@ -28,12 +28,9 @@ const NewsCarousel = () => {
     getTopStories();
   }, []);
 
-
-
-
   // Checking the size of the window
   const isDesktopOrLaptop = window.matchMedia("(min-width: 1200px)");
-  console.log(isDesktopOrLaptop.matches);
+  // console.log(isDesktopOrLaptop.matches);
 
   const styles = {
     cardDesktop: {
@@ -80,10 +77,10 @@ const NewsCarousel = () => {
       multimedia: currentArt.multimedia,
     })
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         dispatch({
-          type: SAVE_ARTICLE,
-          payload: result.data.favorites,
+          type: "addFav",
+          payload: [JSON.parse(result.config.data)],
         });
       })
       .catch((err) => console.log(err));

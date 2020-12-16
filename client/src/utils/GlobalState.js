@@ -4,8 +4,6 @@ import {
   REMOVE_FAVORITE,
   UPDATE_FAVORITES,
   LOADING,
-  UPDATE_ARTICLES,
-  SET_CURRENT_ARTICLE,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -13,13 +11,12 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-    // case SET_CURRENT_ARTICLE:
-    //   return {
-    //     ...state,
-    //     currentArticle: action.payload.article,
-    //     index: action.payload.index,
-    //     loading: false,
-    //   };
+    case "addFav": {
+      return {
+        ...state,
+        favorites: [...action.payload, ...state.favorites],
+      };
+    }
     case SAVE_ARTICLE:
       return {
         ...state,
@@ -27,19 +24,12 @@ const reducer = (state, action) => {
         loading: false,
       };
 
-    // case UPDATE_ARTICLES:
+    // case UPDATE_FAVORITES:
     //   return {
     //     ...state,
-    //     articles: [...action.payload],
+    //     favorites: [...state.favorites],
     //     loading: false,
     //   };
-
-    case UPDATE_FAVORITES:
-      return {
-        ...state,
-        favorites: [...state.favorites],
-        loading: false,
-      };
 
     case REMOVE_FAVORITE:
       return {

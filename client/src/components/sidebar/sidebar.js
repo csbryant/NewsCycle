@@ -48,11 +48,13 @@ const Sidebar = () => {
     <header className="shadow">
       <div className="sidenav">
         <div style={styles.logoutSection}>
+        <a style={styles.logoutA} href="/">
           <button style={styles.logoutBtn}>
-            <a style={styles.logoutA} href="/">
+        
               LOG OUT
-            </a>
+           
           </button>
+          </a>
         </div>
         <ul>
           {state.favorites.map((article, index) => {

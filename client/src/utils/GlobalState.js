@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import {
   ADD_FAVORITE,
-  SAVE_ARTICLE,
   REMOVE_FAVORITE,
   LOADING,
   INITIAL_LOAD,
@@ -19,19 +18,15 @@ const reducer = (state, action) => {
         loading: false,
       };
     }
-    case SAVE_ARTICLE:
-      return {
-        ...state,
-        articleIDs: [action.payload],
-        loading: false,
-      };
 
     case REMOVE_FAVORITE:
+      console.log(action.payload);
       return {
         ...state,
         favorites: state.favorites.filter((article) => {
           return article._id !== action.payload._id;
         }),
+        loading: false,
       };
 
     case INITIAL_LOAD:

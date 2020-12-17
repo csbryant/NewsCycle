@@ -1,9 +1,10 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import { useUserContext } from '../../context/userContext'
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { useUserContext } from "../../context/userContext";
 
 function PrivateRoute({ children, ...rest }) {
-  const [user, dispatch] = useUserContext()
+  const [user, dispatch] = useUserContext();
+  console.log(user);
   return (
     <Route
       {...rest}
@@ -13,13 +14,13 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: '/',
+              pathname: "/",
               state: { from: location },
             }}
           />
         )
       }
     />
-  )
+  );
 }
-export default PrivateRoute
+export default PrivateRoute;

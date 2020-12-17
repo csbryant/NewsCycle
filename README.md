@@ -29,7 +29,7 @@ Node
 ### Installation
 1. Get a free API Key at https://example.com
 2. Clone the repo
-git clone <br/> `hgit@github.com:csbryant/VoterCheatSheet.git`
+git clone <br/> `https://github.com/csbryant/NewsCycle.git`
 3. Install NPM packages
 npm install
 

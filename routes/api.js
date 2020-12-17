@@ -62,11 +62,11 @@ router.put("/users/:id", ({ body, params }, res) => {
 });
 
 // Deletes single articles
-router.put("/articles", ({ body, session }, res) => {
+router.delete("/articles", ({ body, session }, res) => {
   let id = session.passport.user;
   console.log({ id });
   console.log(body);
-  db.User.findByIdAndUpdate(
+  db.User.findByIdAndDelete(
     id,
     { $pull: { favorites: body.query } },
     { new: true }

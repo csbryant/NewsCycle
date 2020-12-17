@@ -2,24 +2,28 @@ import React, { useEffect, useState } from "react";
 import "./_sidebar.scss";
 import ArticleList from "../../components/articlelist/articlelist";
 import { useStoreContext } from "../../utils/GlobalState";
-import {
-  REMOVE_FAVORITE,
-  LOADING,
-  UPDATE_FAVORITES,
-} from "../../utils/actions";
+import { LOADING, REMOVE_FAVORITE } from "../../utils/actions";
 import API from "../../utils/API";
 
 const Sidebar = () => {
   const [state, dispatch] = useStoreContext();
 
   const removeArticle = (id) => {
+    dispatch({ type: LOADING });
     console.log(id);
     API.deleteArticle(id)
-      .then((res) => {
+      .then((result) => {
+        console.log(result.data);
         dispatch({
           type: REMOVE_FAVORITE,
-          payload: { _id: id },
+          payload: result.data,
         });
+        console.log(
+          dispatch({
+            type: REMOVE_FAVORITE,
+            payload: result.data,
+          })
+        );
       })
       .catch((err) => console.log(err));
   };

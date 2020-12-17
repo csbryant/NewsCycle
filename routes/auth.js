@@ -16,6 +16,7 @@ router.post("/register_login", (req, res, next) => {
       if (err) {
         return res.status(400).json({ errors: err });
       }
+      console.log(user);
       return res.status(200).json(user);
     });
   })(req, res, next);

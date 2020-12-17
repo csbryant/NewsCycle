@@ -15,14 +15,19 @@ router.post("/articles", ({ body, session }, res) => {
   let artId;
   db.Article.create(body)
     .then((articleid) => {
-      artId = articleid;
+      console.log("===========>", articleid);
+      artId = articleid._id;
       db.User.findByIdAndUpdate(
         id,
-        { $push: { favorites: articleid } },
+        { $push: { favorites: artId } },
         { new: true }
       ).then((user) => {
-        console.log(user);
-        res.json(user.favorites.filter((id) => id == artId));
+        let data = {
+          ...body,
+          _id: user.favorites.filter((id) => id.equals(artId))[0],
+        };
+        console.log(data);
+        res.json(data);
       });
     })
     .catch((err) => {
@@ -36,9 +41,9 @@ router.get("/articles", ({ session }, res) => {
   // console.log(id);
   db.User.findById(id)
     .populate("favorites")
-    .then((articles) => {
-      console.log(articles);
-      res.json(articles);
+    .then((user) => {
+      console.log(user);
+      res.json(user);
     })
     .catch((err) => {
       console.log(err);
@@ -64,16 +69,15 @@ router.put("/users/:id", ({ body, params }, res) => {
 // Deletes single articles
 router.put("/articles", ({ body, session }, res) => {
   let id = session.passport.user;
-  console.log({ id });
   console.log(body);
-  db.User.findByIdAndUpdate(
-    id,
-    { $pull: { favorites: body.query } },
-    { new: true }
-  )
+  let artId = body.query;
+  db.User.findByIdAndUpdate(id, { $pull: { favorites: artId } }, { new: false })
     .then((user) => {
-      console.log(user);
-      res.json(user);
+      let data = {
+        _id: user.favorites.filter((id) => id.equals(artId))[0],
+      };
+      console.log(data);
+      res.json(data);
     })
     .catch((err) => {
       console.log(err);

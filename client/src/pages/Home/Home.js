@@ -20,6 +20,7 @@ function Home() {
     dispatch({ type: LOADING });
     API.getFavorites()
       .then((result) => {
+        console.log(result.data.favorites);
         dispatch({
           type: INITIAL_LOAD,
           payload: result.data.favorites,
